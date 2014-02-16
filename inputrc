@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set completion-ignore-case on
+
+#use up arrow to search history backwards
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+$if Bash
+  Space: magic-space
+$endif
+"\M-o": "\C-p\C-a\M-f "
+set completion-ignore-case on
+set visible-stats on
+set show-all-if-ambiguous on
+"\M-s": menu-complete
+
+#This will let you to begin a command and hit the up-arrow
+#to search backwards through your history for commands starting
+#with whatever you've typed so far
+
+"\eOA": history-search-backward
+"\e[A": history-search-backward
+"\eOB": history-search-forward
+"\e[B": history-search-forward
+"\eOC": forward-char
+"\e[C": forward-char
+"\eOD": backward-char
+"\e[D": backward-char
+
+
+
+# use alt key to jump b/w words. 
+# useful for iterm2 which has 
+# different key bindings than os x defaults
+# "\e[1;9D": backward-word
+# "\e[1;9C": forward-word
+
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+
+"\e[3~": kill-word
