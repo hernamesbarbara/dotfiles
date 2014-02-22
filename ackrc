@@ -13,6 +13,9 @@
 # Always color, even if piping to a another program
 --color
 
+# always follow symlinks
+--follow
+
 # Use "less −r" as my pager
 # --pager
 # less -r
