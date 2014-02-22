@@ -1,0 +1,19 @@
+#!/bin/bash
+
+TODAY=$(date +"%A %B %d, %Y")
+CURRENT_TIME=`date +%H`
+
+if [ $CURRENT_TIME -lt 12 ]; then
+  GREETING="Good morning"
+elif [ $CURRENT_TIME -lt 18 ]; then
+  GREETING="Good afternoon"
+else
+  GREETING="Good evening"
+fi
+
+echo -e "$GREETING, `whoami`!" | lolcat
+echo -e "Today is $TODAY\n" | lolcat
+
+# print a fortune when the terminal opens
+fortune -a -s | lolcat
+echo -e "\n"

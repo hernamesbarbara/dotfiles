@@ -37,5 +37,5 @@ set show-all-if-ambiguous on
 
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
-
 "\e[3~": kill-word
+
