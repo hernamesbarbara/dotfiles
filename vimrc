@@ -110,6 +110,8 @@ if has("autocmd")
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
   autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
+  autocmd FileType markdown softtabstop=4 tabstop=4 shiftwidth=4 expandtab foldnestmax=1
+  " nnoremap <silent> <C-l> :nohl<CR><C-l>u"
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -205,4 +207,7 @@ set wildignore+=*.luac "Lua byte code"
 set wildignore+=migrations "Django migrations"
 set wildignore+=*.pyc "Python Object codes"
 set wildignore+=*.orig "Merge resolution files"
+
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# I don't know what this does
+export CLICOLOR=1
+
+# syntax highlighting for grep matches
+export GREP_OPTIONS='--color=auto'
+
+# I don't know what this does
+export LSCOLORS=Exfxcxdxbxegedabagacad
+# export LSCOLORS=gxfxcxdxbxegedabagacad # Dark lscolor scheme
+
+# Don't put duplicate lines in your bash history
+export HISTCONTROL=ignoredups
+
+# boost history limit (100KB or 5K entries)
+export HISTFILESIZE=100000
+export HISTSIZE=5000

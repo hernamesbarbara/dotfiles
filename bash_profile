@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# sourcing several other miscellaneous configs I like
+source ~/.miscrc
+
 # Add Homebrew `/usr/local/bin` and User `~/bin` to the `$PATH`
 PATH=/usr/local/bin:$PATH
 
@@ -28,8 +33,4 @@ for f in $(command ls ~/.node-completion); do
 done
 # }}}
 
-
 source ~/greetoftheday
-
-
-
