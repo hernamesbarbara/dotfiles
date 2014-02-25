@@ -1,2 +1,48 @@
+-- automatically use wide vs. long display for query results 
 \x auto
-\set PROMPT1 '%[%033[1;32;40m%]%M:%&gt; %n@%/%[%033[0m%]% # '
+
+-- Report time used for each query.
+\timing
+
+-- Set a cute border around query results.
+-- \pset border 2
+
+-- set null character to show as NULL
+-- easier to see the diff b/w '' and NULL
+\pset null 'NULL'
+
+-- Set pager to less, rather than more.
+-- \pset PAGER /usr/bin/less
+
+-- ignore duplicates in history file 
+\set HISTCONTROL ignoredups
+
+-- auto complete SQL keywords in uppercase
+\set COMP_KEYWORD_CASE upper
+
+/* **************** */
+/* YOUR CMD PROMPT */
+/* **************** */
+
+/*
+** COLOURS ** 
+black 30
+red 31
+green 32
+yellow 33
+blue 34
+magenta 35
+cyan 36
+white 37
+
+** OTHER SYMBOLS ** 
+%M = database server
+%/ = database name
+%n = database user
+%> = port number
+*/
+
+\set PROMPT1 '\033[1;31m%M\033[1;37m from\033[1;32m %/ \033[1;37mas\033[1;33m %n\n\033[1;31m#\033[1;37m '
+\set PROMPT2 '# '
+
+\pset format wrapped

@@ -16,3 +16,5 @@ export HISTCONTROL=ignoredups
 # boost history limit (100KB or 5K entries)
 export HISTFILESIZE=100000
 export HISTSIZE=5000
+
+alias yhdw='psql -h dw.yhathq.com -d yhat -U austin'
