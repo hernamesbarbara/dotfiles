@@ -17,4 +17,8 @@ export HISTCONTROL=ignoredups
 export HISTFILESIZE=100000
 export HISTSIZE=5000
 
+# quickly connect to data warehouse
 alias yhdw='psql -h dw.yhathq.com -d yhat -U austin'
+
+# source virtualenv wrapper script
+source /usr/local/bin/virtualenvwrapper.sh
