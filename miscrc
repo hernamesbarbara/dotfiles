@@ -21,4 +21,5 @@ export HISTSIZE=5000
 alias yhdw='psql -h dw.yhathq.com -d yhat -U austin'
 
 # source virtualenv wrapper script
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 source /usr/local/bin/virtualenvwrapper.sh
