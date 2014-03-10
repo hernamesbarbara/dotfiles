@@ -15,5 +15,5 @@ echo -e "$GREETING, `whoami`!" | lolcat
 echo -e "Today is $TODAY\n" | lolcat
 
 # print a fortune when the terminal opens
-fortune -a -s | lolcat
+fortune -a -s | cowsay | lolcat
 echo -e "\n"
