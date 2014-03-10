@@ -179,6 +179,9 @@ let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.vim$', '\~$', '\.git$', '.DS_Store']
 let NERDChristmasTree=1
 
+" open NERDTree automatically
+autocmd VimEnter * NERDTree
+
 " Mapping to minibuffer
 nmap <C-t> :bn<CR>
 
