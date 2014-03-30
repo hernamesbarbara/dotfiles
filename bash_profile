@@ -21,9 +21,6 @@ source "/Users/hernamesbarbara/.aliases"
 # source .bash_prompt
 source "/Users/hernamesbarbara/.bash_prompt"
 
-# source ~/.gibo-completion.bash
-source ~/.gibo-completion.bash
-
 # {{{
 # Node Completion - Auto-generated, do not touch.
 shopt -s progcomp
