@@ -7,7 +7,7 @@ source ~/.miscrc
 PATH=/usr/local/bin:$PATH
 
 # add the bin folder in your home directory to your path
-PATH=/Users/hernamesbarbara/bin:$PATH
+PATH=~/bin:$PATH
 
 # export the PATH variable
 export PATH=/usr/local/sbin:$PATH
@@ -16,10 +16,10 @@ export PATH=/usr/local/sbin:$PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # source aliases
-source "/Users/hernamesbarbara/.aliases"
+source ~/.aliases
 
 # source .bash_prompt
-source "/Users/hernamesbarbara/.bash_prompt"
+source ~/.bash_prompt
 
 # {{{
 # Node Completion - Auto-generated, do not touch.

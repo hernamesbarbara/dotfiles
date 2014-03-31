@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # postgresql server
 alias pgdown="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 alias pgup="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
@@ -21,7 +23,7 @@ alias rmswp='sudo find . -name '*.swp' -type f -delete'
 alias cwd='pwd | tr -d "\r\n" | pbcopy'
 
 # copy working directory with ~ instead of your username
-alias cwdt="pwd | sed -e 's/\/Users\/hernamesbarbara/~/g' | tr -d '\r\n' | pbcopy" 
+alias cwdt="pwd | sed -e 's/\/Users\/`whoami`/~/g' | tr -d '\r\n' | pbcopy" 
 
 # copy file interactive
 alias cp='cp -i'
