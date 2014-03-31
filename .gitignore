@@ -2,7 +2,7 @@
 *.swp
 .git/
 .git
-.pgpass
-gist
-gitconfig
-privaterc
+*pgpass
+*gist
+*gitconfig
+*privaterc
