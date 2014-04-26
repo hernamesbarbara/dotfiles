@@ -6,6 +6,7 @@ alias pgup="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.
 
 # ipython qtconsole
 alias ipy='ipython qtconsole --ConsoleWidget.font_family="Consolas" --ConsoleWidget.font_size=13 --pylab=inline'
+alias ipynb='ipython notebook --ConsoleWidget.font_family="Consolas" --ConsoleWidget.font_size=13 --pylab=inline'
 
 # vhosts
 alias hosts='sudo vim /etc/hosts'
