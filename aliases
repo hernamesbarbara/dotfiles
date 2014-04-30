@@ -20,6 +20,9 @@ alias rmswo='sudo find . -name '*.swo' -type f -delete'
 # remove .swp recursively
 alias rmswp='sudo find . -name '*.swp' -type f -delete'
 
+# remove pyc files recursively
+alias rmpyc='sudo find . -name '*.pyc' -type f -delete'
+
 # copy working directory
 alias cwd='pwd | tr -d "\r\n" | pbcopy'
 
