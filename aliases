@@ -14,14 +14,14 @@ alias vhosts='sudo vim /etc/apache2/extra/httpd-vhosts.conf'
 
 # cleanup aliases
 # remove .DS_Store recursively
-alias rmdss='sudo find . -name '*.DS_Store' -type f -delete'
+alias rmdss='find . -name '*.DS_Store' -type f -delete'
 # remove .swo recursively
-alias rmswo='sudo find . -name '*.swo' -type f -delete'
+alias rmswo='find . -name '*.swo' -type f -delete'
 # remove .swp recursively
-alias rmswp='sudo find . -name '*.swp' -type f -delete'
+alias rmswp='find . -name '*.swp' -type f -delete'
 
 # remove pyc files recursively
-alias rmpyc='sudo find . -name '*.pyc' -type f -delete'
+alias rmpyc='find . -name '*.pyc' -type f -delete'
 
 # copy working directory
 alias cwd='pwd | tr -d "\r\n" | pbcopy'
