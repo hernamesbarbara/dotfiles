@@ -10,7 +10,11 @@ PATH=/usr/local/bin:$PATH
 PATH=~/bin:$PATH
 
 # export the PATH variable
-export PATH=/usr/local/sbin:$PATH
+PATH=/usr/local/sbin:$PATH
+# add julia
+PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
+
+export PATH=$PATH
 
 # rvm shit
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
