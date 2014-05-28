@@ -1,6 +1,8 @@
 #!/bin/bash
 
 TODAY=$(date +"%A %B %d, %Y")
+TODAY_ISO8601=$(date +"%Y%m%d")
+
 CURRENT_TIME=`date +%H`
 
 if [ $CURRENT_TIME -lt 12 ]; then
