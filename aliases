@@ -38,6 +38,9 @@ alias mv='mv -i'
 # untar
 alias untar='tar xvf'
 
+# make new directory and  cd into it
+function mkd () { mkdir -p "$@" && cd "$@"; }
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
   colorflag="--color"
