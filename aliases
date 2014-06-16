@@ -4,6 +4,9 @@
 alias pgdown="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 alias pgup="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 
+# create a scratch.sql file on the desktop and open it
+alias ss="touch ~/Desktop/scratch.sql & open ~/Desktop/scratch.sql"
+
 # ipython qtconsole
 alias ipy='ipython qtconsole --ConsoleWidget.font_family="Consolas" --ConsoleWidget.font_size=13 --pylab=inline'
 alias ipynb='ipython notebook --ConsoleWidget.font_family="Consolas" --ConsoleWidget.font_size=13 --pylab=inline'
