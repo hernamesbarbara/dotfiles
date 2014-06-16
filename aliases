@@ -78,15 +78,15 @@ export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 # Call from a local repo to open the repository on github in browser
 function github() {
  giturl=$(git config --get remote.origin.url)
- if [ "$giturl" == "" ]
-   then
-    echo "Not a git repository or no remote.origin.url set"
-    exit 1;
- fi
- giturl=${giturl/git\@github\.com\:/https://github.com/}
- giturl=${giturl/\.git//}
- echo $giturl
- open $giturl
+ if [ -z "$giturl" ]
+    then
+        echo "Not a git repository or no remote.origin.url set";
+    else
+        giturl=${giturl/git\@github\.com\:/https://github.com/}
+        giturl=${giturl/\.git//}
+        echo $giturl
+        open $giturl
+    fi
 }
 
 # Query Wikipedia via console over DNS
