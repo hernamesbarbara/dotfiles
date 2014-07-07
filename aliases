@@ -116,3 +116,4 @@ function cfp () {
 }
 
 
+alias cdb='cd ~/Dropbox-Yhat/yhat-box/'
