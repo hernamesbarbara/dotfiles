@@ -29,8 +29,13 @@ alias rmpyc="find . -name '*.pyc' -type f -delete"
 # copy working directory
 alias cwd='pwd | tr -d "\r\n" | pbcopy'
 
-# copy working directory with ~ instead of your username
-alias cwdt="pwd | sed -e 's/\/Users\/`whoami`/~/g' | tr -d '\r\n' | pbcopy" 
+# copy filepath, replacing your username with tilde (~) 
+# for easy path sharing
+function cwdp() {
+    echo "$1" | sed -e "s/\/Users\/$(whoami)/~/g" | tr -d '\r\n' | pbcopy
+}
+
+# dirname "$1" | sed -e 's/\/Users\/"$ME"/~/g'
 
 # copy file interactive
 alias cp='cp -i'

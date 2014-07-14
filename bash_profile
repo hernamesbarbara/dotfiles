@@ -13,8 +13,11 @@ PATH=~/bin:$PATH
 PATH=/usr/local/sbin:$PATH
 # add julia
 PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
-
 export PATH=$PATH
+
+# go path enables you to use `go get`
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
 
 # rvm shit
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
