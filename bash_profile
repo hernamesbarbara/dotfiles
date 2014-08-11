@@ -15,6 +15,9 @@ PATH=/usr/local/sbin:$PATH
 PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
 export PATH=$PATH
 
+# windml python package
+export PYTHONPATH=$PYTHONPATH:~/windml
+
 # go path enables you to use `go get`
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
