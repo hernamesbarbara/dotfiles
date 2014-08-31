@@ -20,7 +20,4 @@ export HISTSIZE=5000
 # private stuff kept off of github for security
 source ~/.privaterc
 
-# source virtualenv wrapper script
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-export WORKON_HOME=~/Envs
-source /usr/local/bin/virtualenvwrapper.sh
+
