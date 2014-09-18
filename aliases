@@ -43,6 +43,8 @@ function cwd() {
     echo -e "$N" | tr -d '\r\n' | pbcopy
 }
 
+alias excel="open -a Microsoft\ Excel"
+
 # copy file interactive
 alias cp='cp -i'
 
