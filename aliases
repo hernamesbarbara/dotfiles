@@ -121,12 +121,3 @@ man() {
  man "$@"
 }
 
-function cfp () {
-    INPATH=$1
-    OUTPATH=$(echo $1 | sed s/\\/Users\\/`whoami`/~/)
-    echo -e $OUTPATH | tr -d '\r\n' | pbcopy
-    echo $OUTPATH copied to clipboard...
-}
-
-
-alias cdb='cd ~/Dropbox-Yhat/yhat-box/'
