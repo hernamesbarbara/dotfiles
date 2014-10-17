@@ -18,6 +18,9 @@ PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
 # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/.rvm/bin 
 
+# add MacTex LaTeX distribution (requried for Octave)
+PATH=$PATH:/usr/texbin
+
 # windml python package
 export PYTHONPATH=$PYTHONPATH:~/windml
 
