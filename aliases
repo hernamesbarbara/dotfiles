@@ -69,7 +69,7 @@ alias ..='cd ..'
 alias o='open '
 alias h='history '
 
-# List all files colorized in long format
+# Long list colorized w/ size in human understandable form
 alias ll='ls -lh'
 
 # List all files colorized in long format, including dot files
@@ -79,7 +79,7 @@ alias la="ls -lha"
 alias lsd='ls -l | grep "^d"'
 
 # List current directory contents by last modified descending.
-alias lt="ls -lt"
+alias lst="ls -lt"
 
 # `lh` or list hidden. Displays only hidden (dot) files names.
 alias lh='ls -a | egrep "^\."'
