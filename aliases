@@ -32,7 +32,7 @@ alias rmpyc="find . -name '*.pyc' -type f -delete"
 function cwd() {
     if [ -z "$1" ]
     then
-        N=$(pwd)
+        N=$(pwd -P)
     else
         N="$1"
     fi
