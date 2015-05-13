@@ -21,6 +21,9 @@ PATH=$PATH:$HOME/.rvm/bin
 # add MacTex LaTeX distribution (requried for Octave)
 PATH=$PATH:/usr/texbin
 
+# add scripts to path to be able to use them from anywhere on your mac
+PATH=$PATH:~/dotfiles/scripts
+
 # windml python package
 export PYTHONPATH=$PYTHONPATH:~/windml
 
