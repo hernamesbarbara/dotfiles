@@ -30,11 +30,11 @@ alias rmpyc="find . -name '*.pyc' -type f -delete"
 # or pass filename to get the path to that file
 # replace your username with tilde ~/ 
 function cwd() {
-    if [ -z "$1" ]
+    N=$(pwd -P)
+    F="$1"
+    if [ "$F" != "" ]
     then
-        N=$(pwd -P)
-    else
-        N="$1"
+        N=$N/$F
     fi
     N=$(echo -e "$N" | sed -e "s/\/Users\/$(whoami)/~/g")
     N=$(echo -e "$N" | sed 's/ /\\ /g')
