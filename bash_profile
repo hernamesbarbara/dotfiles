@@ -31,6 +31,9 @@ export PYTHONPATH=$PYTHONPATH:~/windml
 export GOPATH=$HOME/.go
 PATH=$PATH:$GOPATH/bin
 
+# add node to path
+PATH=$PATH:/usr/local/share/npm/bin
+
 export PATH=$PATH
 
 # rvm shit
@@ -41,14 +44,5 @@ source ~/.aliases
 
 # source .bash_prompt
 source ~/.bash_prompt
-
-# {{{
-# Node Completion - Auto-generated, do not touch.
-shopt -s progcomp
-for f in $(command ls ~/.node-completion); do
-  f="$HOME/.node-completion/$f"
-  test -f "$f" && . "$f"
-done
-# }}}
 
 source ~/greetoftheday
