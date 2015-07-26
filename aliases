@@ -44,6 +44,7 @@ function cwd() {
 }
 
 alias excel="open -a Microsoft\ Excel"
+alias chrome="open -a Google\ Chrome"
 
 # copy file interactive
 alias cp='cp -i'
