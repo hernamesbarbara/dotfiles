@@ -100,6 +100,8 @@ alias lst="ls ${colorflag} -lt"
 # `lh` or list hidden. Displays only hidden (dot) files names.
 alias lh='ls ${colorflag} -a | egrep "^\."'
 
+alias followers='t whoami | grep -i tweets | cut -d's' -f2 | while read line ; do echo $line followers | say ; done'
+
 # Call from a local repo to open the repository on github in browser
 function github() {
  giturl=$(git config --get remote.origin.url)
