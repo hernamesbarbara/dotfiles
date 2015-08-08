@@ -100,7 +100,15 @@ alias lst="ls ${colorflag} -lt"
 # `lh` or list hidden. Displays only hidden (dot) files names.
 alias lh='ls ${colorflag} -a | egrep "^\."'
 
-alias followers='t whoami | grep -i tweets | cut -d's' -f2 | while read line ; do echo $line followers | say ; done'
+# alias followers='t whoami | grep -i tweets | cut -d's' -f2 | while read line ; do echo $line followers | say ; done'
+
+function followers() {
+    SCREEN_NAME=`t whoami | grep Name | cut -d',' -f1 | cut -d'e' -f2`
+    N_FOLLOWERS=`t whoami | grep Followers | cut -d's' -f2`
+    MSG="$SCREEN_NAME has "$N_FOLLOWERS" followers"
+    echo $MSG
+    say $MSG
+}
 
 # Call from a local repo to open the repository on github in browser
 function github() {
