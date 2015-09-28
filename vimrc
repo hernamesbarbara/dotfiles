@@ -179,6 +179,9 @@ let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.vim$', '\~$', '\.git$', '.DS_Store']
 let NERDChristmasTree=1
 
+" automatically close NERDTree if it is the only buffer open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 " open NERDTree automatically
 autocmd VimEnter * NERDTree
 

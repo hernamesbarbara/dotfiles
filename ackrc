@@ -10,8 +10,18 @@
 # Always sort the files
 #--sort−files
 
+# Use different colors for filenames and matched text
+--color-filename=bold cyan
+--color-lineno=bold cyan
+--color-match=bold red
+
 # Always color, even if piping to a another program
+# Force color and header, even in less -R.
 --color
+--group
+
+# Flush output immediately, even when piped
+--flush
 
 # always follow symlinks
 --follow
