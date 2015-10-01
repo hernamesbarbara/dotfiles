@@ -3,6 +3,11 @@
 # sourcing several other miscellaneous configs I like
 source ~/.miscrc
 
+: '
+*****************************************************************************
+***********************************<$PATH>***********************************
+*****************************************************************************
+'
 # Add Homebrew `/usr/local/bin` and User `~/bin` to the `$PATH`
 PATH=/usr/local/lib:$PATH
 PATH=/usr/local/bin:$PATH
@@ -24,6 +29,9 @@ PATH=$PATH:/usr/texbin
 # add scripts to path to be able to use them from anywhere on your mac
 PATH=$PATH:~/dotfiles/scripts
 
+# helper for installing 3rd party libraries for us in Alfred.app workflows
+export ALFREDPATH=~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences/workflows/
+
 # windml python package
 export PYTHONPATH=$PYTHONPATH:~/windml
 
@@ -35,6 +43,12 @@ PATH=$PATH:$GOPATH/bin
 PATH=$PATH:/usr/local/share/npm/bin
 
 export PATH=$PATH
+
+: '
+******************************************************************************
+*********************************</$PATH>*************************************
+******************************************************************************
+'
 
 # rvm shit
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

@@ -1,18 +1,31 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
-"""snakify.py
+"""strutils - helpers for working with strings
 """
 from string import punctuation
 import sys
+import os
+import sys
+import re
 
 FILETYPES = (".txt", ".csv", ".xlsx", ".xls", ".pdf", ".png", ".jpg", ".jpeg", ".docx", ".doc", ".py", ".r")
+
+def try_convert_str(s):
+    """
+    convert input to a unicode string if you can otherwise return empty string
+    """
+    if s is None:
+        s = u""
+    try:
+        return unicode(s)
+    except:
+        return u""
 
 def rm_non_ascii(s):
     """
     remove any non ascii characters
     """
-    if not isinstance(s, basestring):
-            return u""
+
     s = s.strip()
     try:
         return u''.join(filter(lambda x: ord(x)<128, s))
@@ -30,22 +43,3 @@ def rm_punct(txt):
     s = ''.join([c for c in txt if c not in exclude])
     return s
 
-def snakify(txt):
-    """
-    downcases and swap spaces for underscore.
-    """
-    if not isinstance(txt, basestring):
-        txt = str(txt)
-    if txt.endswith(FILETYPES):
-        txt, file_extension = txt.rsplit(".", 1)
-    else:
-        file_extension = ""
-    s = rm_punct(txt)
-    s = '_'.join(s.split()).lower()
-    if file_extension:
-        s += ".{}".format(file_extension)
-    return s
-
-if __name__ == "__main__":
-    txt = " ".join(sys.argv[1:])
-    print >> sys.stdout, "".join(snakify(txt))
