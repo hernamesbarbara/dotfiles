@@ -8,26 +8,21 @@ source ~/.miscrc
 ***********************************<$PATH>***********************************
 *****************************************************************************
 '
-# Add Homebrew `/usr/local/bin` and User `~/bin` to the `$PATH`
-PATH=/usr/local/lib:$PATH
-PATH=/usr/local/bin:$PATH
 
-# add the bin folder in your home directory to your path
-PATH=~/bin:$PATH
+PATH=$PATH:/usr/local/bin        # homebrew first
+PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting 
+PATH=$PATH:/usr/local/sbin
+PATH=$PATH:/usr/local/lib
+PATH=$PATH:$HOME/bin
 
-# export the PATH variable
-PATH=/usr/local/sbin:$PATH
 # add julia
 PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
-
-# Add RVM to PATH for scripting
-PATH=$PATH:$HOME/.rvm/bin 
 
 # add MacTex LaTeX distribution (requried for Octave)
 PATH=$PATH:/usr/texbin
 
 # add scripts to path to be able to use them from anywhere on your mac
-PATH=$PATH:~/dotfiles/scripts
+PATH=$PATH:~/dotfiles/scripts/bin
 
 # helper for installing 3rd party libraries for us in Alfred.app workflows
 export ALFREDPATH=~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences/workflows/
