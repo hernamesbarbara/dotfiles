@@ -27,8 +27,8 @@ PATH=$PATH:~/dotfiles/scripts/bin
 # helper for installing 3rd party libraries for us in Alfred.app workflows
 export ALFREDPATH=~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences/workflows/
 
-# windml python package
-export PYTHONPATH=$PYTHONPATH:~/windml
+# virtualenv's default python interpreter when creating new envs
+export PYTHON_EXE=$(which python)
 
 # go path enables you to use `go get`
 export GOPATH=$HOME/.go
