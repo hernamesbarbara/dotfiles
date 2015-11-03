@@ -29,18 +29,19 @@ alias rmpyc="find . -name '*.pyc' -type f -delete"
 # copy working directory
 # or pass filename to get the path to that file
 # replace your username with tilde ~/ 
+# on OS X you can install `greadlink` via: `brew install coreutils`
 function cwd() {
-    N=$(pwd -P)
-    F="$1"
-    if [ "$F" != "" ]
-    then
-        N=$N/$F
+    if [ "$1" != "" ]
+        then
+            P=$(greadlink "$1" -f --no-newline)
+        else
+            P=$(greadlink "." -f --no-newline)
     fi
-    N=$(echo -e "$N" | sed -e "s/\/Users\/$(whoami)/~/g")
-    N=$(echo -e "$N" | sed 's/ /\\ /g')
-    N=$(echo -e "$N" | sed 's/(/\\(/g')
-    N=$(echo -e "$N" | sed 's/)/\\)/g')
-    echo -e "$N" | tr -d '\r\n' | pbcopy
+    P=$(echo -e "$P" | sed -e "s/\/Users\/$(whoami)/~/g")
+    P=$(echo -e "$P" | sed 's/ /\\ /g')
+    P=$(echo -e "$P" | sed 's/(/\\(/g')
+    P=$(echo -e "$P" | sed 's/)/\\)/g')
+    echo -e "$P" | tr -d '\r\n' | pbcopy
 }
 
 alias excel="open -a Microsoft\ Excel"
