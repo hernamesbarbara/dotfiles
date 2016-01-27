@@ -8,11 +8,10 @@ source ~/.miscrc
 ***********************************<$PATH>***********************************
 *****************************************************************************
 '
-
+PATH=$PATH:/usr/local/lib
 PATH=$PATH:/usr/local/bin        # homebrew first
 PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting 
 PATH=$PATH:/usr/local/sbin
-PATH=$PATH:/usr/local/lib
 PATH=$PATH:$HOME/bin
 
 # add julia
