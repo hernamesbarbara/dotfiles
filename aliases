@@ -101,13 +101,17 @@ alias lst="ls ${colorflag} -lt"
 # `lh` or list hidden. Displays only hidden (dot) files names.
 alias lh='ls ${colorflag} -a | egrep "^\."'
 
-# alias followers='t whoami | grep -i tweets | cut -d's' -f2 | while read line ; do echo $line followers | say ; done'
-
 function followers() {
     SCREEN_NAME=`t whoami | grep Name | cut -d',' -f1 | cut -d'e' -f2`
-    N_FOLLOWERS=`t whoami | grep Followers | cut -d's' -f2`
+    SCREEN_NAME=`echo "$SCREEN_NAME" | xargs`
+    N_FOLLOWERS=`t whoami | grep Followers | cut -d " " -f2-10`
+    TEXT="$SCREEN_NAME has "$N_FOLLOWERS" followers"
+    if [ "$SCREEN_NAME" = "Yhat" ]
+        then
+            SCREEN_NAME="why-hat"
+    fi
     MSG="$SCREEN_NAME has "$N_FOLLOWERS" followers"
-    echo $MSG
+    echo $TEXT
     say $MSG
 }
 
