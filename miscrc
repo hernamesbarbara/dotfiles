@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # I don't know what this does
 export CLICOLOR=1

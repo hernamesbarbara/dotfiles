@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # {{{
 # Node Completion - Auto-generated, do not touch.

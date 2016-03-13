@@ -158,7 +158,7 @@ if &listchars ==# 'eol:$'
 endif
 
 if &shell =~# 'fish$'
-  set shell=/bin/bash
+  set shell="/usr/bin/env bash"
 endif
 
 set autoread

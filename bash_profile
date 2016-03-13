@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # sourcing several other miscellaneous configs I like
 source ~/.miscrc
