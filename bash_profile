@@ -54,3 +54,5 @@ source ~/.aliases
 source ~/.bash_prompt
 
 source ~/greetoftheday
+export PGHOST=localhost
+export PGDATA=/usr/local/var/postgres
