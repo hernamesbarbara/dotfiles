@@ -14,6 +14,7 @@ PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/sbin
 PATH=$PATH:$HOME/bin
 
+
 # add julia
 PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
 
@@ -35,6 +36,9 @@ PATH=$PATH:$GOPATH/bin
 
 # add node to path
 PATH=$PATH:/usr/local/share/npm/bin
+
+complete -C '/usr/local/bin/aws_completer' aws
+PATH=/usr/local/aws/bin:$PATH
 
 export PATH=$PATH
 
