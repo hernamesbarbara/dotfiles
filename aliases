@@ -7,10 +7,10 @@ alias pgstatus='pg_ctl status'
 
 # ipython qtconsole
 alias jupyter='jupyter console --colors linux'
-alias ipython='jupyter console --colors linux'
-alias ipy='jupyter'
-alias ipyq='jupyter qtconsole'
-alias ipynb='jupyter notebook'
+alias ipython='ipython console --colors linux'
+alias ipy='ipython'
+alias ipyq='ipython qtconsole'
+alias ipynb='ipython notebook'
 
 # vhosts
 alias hosts='sudo vim /etc/hosts'
