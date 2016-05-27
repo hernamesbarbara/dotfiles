@@ -60,47 +60,51 @@ alias untar='tar xvf'
 # make new directory and  cd into it
 function mkd () { mkdir -p "$@" && cd "$@"; }
 
-# Detect which `ls` flavor is in use
-# -G use colors 
-# -p add trailing slash to directories 
-# -F append a * after executables
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-  colorflag="--color"
-else # OS X `ls`
-  colorflag="-GFp"
-fi
-
-# colorize the output of the `ls` command
-# use the first set of colors if you have a light terminal 
-# use the second set if you have a dark terminal
-# export LSCOLORS=Exfxcxdxbxegedabagacad
+# OS X `ls` command
 export LSCOLORS=gxfxcxdxbxegedabagacad # Dark lscolor scheme
 
-# some other color stuff idk about.
-# Always use color output for `ls`
-# alias ls="command ls ${colorflag}"
+# GNU `ls` (installs w/ coreutils on OS X)
+export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+
+# Detect which `ls` flavor is in use
+if ls -F --color --quote-name > /dev/null 2>&1; then 
+    # GNU `ls`
+    # -F              => append indicator (e.g. * for executables and / for directories)
+    # --quote-name    => surround folder names in quotes
+    # -N              => print raw entry names 
+    colorflag="-FN --color"
+else 
+    # OS X `ls`
+    # -G use colors 
+    # -p add trailing slash to directories 
+    # -F append * for executables
+    colorflag="-GFp"
+fi
+
 alias ls="ls ${colorflag}"
-# export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+
+# colorize grep matches
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
 
 alias ~='cd ~'
 alias ..='cd ..'
+alias ..2='cd ..'
 alias o='open '
 alias h='history '
 
 # Long list colorized w/ size in human understandable form
-alias ll='ls ${colorflag} -lh'
+alias ll='ls -lh'
 
 # List all files colorized in long format, including dot files
-alias la="ls ${colorflag} -lha"
+alias la="ls -lha"
 
 # List only directories
-alias lsd='ls ${colorflag} -l | grep "^d"'
+alias lsd='ls -dl */'
 
 # List current directory contents by last modified descending.
-alias lst="ls ${colorflag} -lt"
-
-# `lh` or list hidden. Displays only hidden (dot) files names.
-alias lh='ls ${colorflag} -a | egrep "^\."'
+alias lst="ls -lt"
 
 function followers() {
     SCREEN_NAME=`t whoami | grep Name | cut -d',' -f1 | cut -d'e' -f2`
@@ -170,4 +174,4 @@ function numberToWords() {
 
 export numberToWords
 
-alias path="echo $PATH | tr : '\n'"
+alias ppath="echo $PATH | tr : '\n'"

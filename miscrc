@@ -3,9 +3,6 @@
 # I don't know what this does
 export CLICOLOR=1
 
-# syntax highlighting for grep matches
-export GREP_OPTIONS='--color=auto'
-
 # Don't put duplicate lines in your bash history
 export HISTCONTROL=ignoredups
 
