@@ -44,8 +44,7 @@ alias pgup="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.
 alias pgstatus='pg_ctl status'
 
 # IPYTHON
-alias jupyter='jupyter console --colors linux'
-alias ipython='ipython console --colors linux'
+alias ipython='ipython --colors linux'
 alias ipy='ipython'
 alias ipyq='ipython qtconsole'
 alias ipynb='ipython notebook'
