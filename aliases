@@ -59,6 +59,10 @@ alias rmjunk="rmdss && rmswo && rmswp && rmpyc && clear"
 # find file by name within current working directory
 alias findh="find . -name "
 
+find_and_rm () {
+    find . -type f -name "$1" | xargs rm
+}
+
 alias excel="open -a Microsoft\ Excel"
 alias chrome="open -a Google\ Chrome"
 
@@ -184,7 +188,5 @@ function numberToWords() {
     data="'__EVENTTARGET=&__EVENTARGUMENT=&__REQUESTDIGEST=0x46489743E32320E826D7E36B010AC7C96BA254A756A34ADCC8079BDC4947D6FA0B16782C206FDE3317A293328C5C32CE2D17BF8A4BDF4DC36D88A0AC9DAE1713%2C21+Feb+2014+00%3A00%3A18+-0000&__VIEWSTATE=%2FwEPDwUBMGRkezo7M8vrv7UZcDBCvmWXHARAwzw%3D&__EVENTVALIDATION=%2FwEWAwKY5bhhApL5orAMAojBlLcLEMpLZkPmdzqLrY6bWh0KwGiyGuM%3D&ctl00%24PlaceHolderMain%24TextboxPart1%24value=${n}&ctl00%24PlaceHolderMain%24ButtonPart1%24ctl00=Convert+to+Text'"
     curl -s -X POST --data ${data} http://www.calculator.org/calculate-online/mathematics/text-number.aspx | grep ctl00_PlaceHolderMain_g_9554de2f_4c98_4d88_9305_ea23437965b8_ctl00 | grep -E -o ">.+<" | tr -d "<>"
 }
-
-export numberToWords
 
 alias ppath="echo $PATH | tr : '\n'"
