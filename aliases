@@ -62,6 +62,16 @@ find_and_rm () {
     find . -type f -name "$1" | xargs rm
 }
 
+function last_cmd_status () {
+  if [ $? = 0 ]; then
+    echo -e '\e[32m0\e[0m'
+    return 0
+  else
+    echo -e '\e[31m$?\e[0m'
+  return $?
+fi
+}
+
 alias excel="open -a Microsoft\ Excel"
 alias chrome="open -a Google\ Chrome"
 

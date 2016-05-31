@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+TIME=$(date +%k:%M:%S)
 TODAY=$(date +"%A %B %d, %Y")
 TODAY_ISO8601=$(date +"%Y%m%d")
 
@@ -13,8 +14,9 @@ else
   GREETING="Good evening"
 fi
 
-echo -e "$GREETING, `whoami`!" | lolcat
+echo -e "$GREETING, $(whoami)!" | lolcat
 echo -e "Today is $TODAY\n" | lolcat
+echo -e "the time is now $TIME" | lolcat
 
 # print a fortune when the terminal opens
 fortune -a -s | cowsay | lolcat

@@ -53,5 +53,14 @@ function parse_git_branch() {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+##################################
+# PS1 – Default interaction prompt
+# \u    => Username
+# \h    => Hostname
+# \w    => Full pathname of current directory
+export PS1="\$? \[${BOLD}${MAGENTA}\]${USER} \[$WHITE\]at \[$ORANGE\]${HOSTNAME} \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\] "
+
+#######################################
+# PS2 - Continuation interactive prompt
 export PS2="\[$ORANGE\]→ \[$RESET\]"
+##################################
