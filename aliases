@@ -118,19 +118,19 @@ alias h='history '
 alias ls="ls ${colorflag}"
 
 # Long list colorized w/ size in human understandable form
-alias ll='ls -lh'
+alias ll='ls -lh --block-size=MB'
 
 # List all files colorized in long format, including dot files
-alias la="ls -lha"
+alias la="ls -lha --block-size=MB"
 
 # List only directories
-alias lsd='ls -dl */'
+alias lsd='ls --block-size=MB -dl */'
 
 # `ls` by last modified date descending
-alias lst="ls -lt"
+alias lst="ls --block-size=MB -lt"
 
 # `ls` only hidden files
-alias lh="ls -ld .[!.]*"
+alias lh="ls -ld .[!.]* --block-size=MB"
 
 function followers() {
     SCREEN_NAME=`t whoami | grep Name | cut -d',' -f1 | cut -d'e' -f2`
