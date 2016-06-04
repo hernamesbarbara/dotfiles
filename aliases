@@ -45,7 +45,6 @@ alias pgstatus='pg_ctl status'
 
 # IPYTHON
 alias ipy='ipython --profile hernamesbarbara'
-alias ipython='ipython --profile hernamesbarbara'
 alias ipyq='ipython qtconsole'
 alias ipynb='ipython notebook'
 
