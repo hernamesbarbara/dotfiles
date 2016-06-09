@@ -37,9 +37,6 @@ PATH=$PATH:$HOME/dotfiles/scripts/bin
 export GOPATH=$HOME/.go
 PATH=$PATH:$GOPATH/bin
 
-# add node to path
-PATH=$PATH:$HOMEBREW_PREFIX/share/npm/bin
-
 complete -C '/usr/local/bin/aws_completer' aws
 PATH=$HOMEBREW_PREFIX/aws/bin:$PATH
 
@@ -66,3 +63,7 @@ source ~/.bash_prompt
 source ~/greetoftheday
 export PGHOST=localhost
 export PGDATA=/usr/local/var/postgres
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
