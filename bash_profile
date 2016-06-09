@@ -8,7 +8,7 @@ source ~/.miscrc
 ***********************************<$PATH>***********************************
 *****************************************************************************
 '
-export HOMEBREW_PREFIX=/usr/local
+export HOMEBREW_PREFIX=$(brew --prefix)
 PATH=$HOMEBREW_PREFIX:$PATH
 PATH=$HOMEBREW_PREFIX/bin:$PATH
 PATH=$HOMEBREW_PREFIX/sbin:$PATH
