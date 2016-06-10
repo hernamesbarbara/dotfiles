@@ -6,4 +6,26 @@ local({r <- getOption("repos")
        options(repos=r)
 })
 
+options(stringsAsFactors=FALSE)
+ 
+options(max.print=100)
+ 
+options(scipen=10)
+ 
+options(editor="vim")
+ 
+# options(show.signif.stars=FALSE)
+ 
+options(menu.graphics=FALSE)
+ 
+options(prompt="> ")
+options(continue="... ")
+ 
+options(width = 80)
+ 
+q <- function (save="no", ...) {
+  quit(save=save, ...)
+}
 
+if(Sys.getenv("TERM") == "xterm-256color")
+  library("colorout")
