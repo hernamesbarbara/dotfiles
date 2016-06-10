@@ -1,15 +1,9 @@
-#!/usr/bin/env Rscript
+#!/usr/bin/env r
+# -*- coding: utf-8 -*- 
 
-r <- getOption("repos")             
-r["CRAN"] <- "http://cran.us.r-project.org"
-options(repos = r)
-rm(r)
-
-# options(repos=structure(c(CRAN="YOUR FAVORITE MIRROR")))
-options(stringsAsFactors = FALSE)
-options(useFancyQuotes = FALSE)
-
-print(paste("OPTIONS COORDSYS(", dQuote("Surface 1"), "AS COMPONENT);"),quote=F)
-
+local({r <- getOption("repos")
+       r["CRAN"] <- "http://cran.r-project.org" 
+       options(repos=r)
+})
 
 
