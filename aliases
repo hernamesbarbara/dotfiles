@@ -38,6 +38,16 @@ function cwd() {
     echo -e "$P" | tr -d '\r\n' | pbcopy
 }
 
+# run a simple HTTP server w/ single command
+server () {
+    if [ "$1" != "" ]; then
+        server_port=$1
+    else
+        server_port=5000
+    fi
+    open "http://localhost:{$server_port}" && python -m SimpleHTTPServer $server_port
+}
+
 # DATABASES
 alias pgdown="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 alias pgup="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"

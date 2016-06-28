@@ -67,3 +67,13 @@ export PGDATA=/usr/local/var/postgres
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
+
+# Load `z` for even easier file nav (see https://github.com/rupa/z)
+if [ -f $(brew --prefix)/etc/profile.d/z.sh ]; then
+    . $(brew --prefix)/etc/profile.d/z.sh
+fi
+
+# use current working directory for title of iterm2 tabs
+if [ $ITERM_SESSION_ID ]; then
+  export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+fi

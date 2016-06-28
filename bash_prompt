@@ -37,6 +37,8 @@ else
   RESET="\033[m"
 fi
 
+export BRIGHT_GREEN="\033[01;32m"
+export BRIGHT_YELLOW="\033[01;33m"
 export MAGENTA
 export ORANGE
 export GREEN
@@ -58,7 +60,7 @@ function parse_git_branch() {
 # \u    => Username
 # \h    => Hostname
 # \w    => Full pathname of current directory
-export PS1="\$? \[${BOLD}${MAGENTA}\]${USER} \[$WHITE\]at \[$ORANGE\]${HOSTNAME} \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\] "
+export PS1="\$? \[${BOLD}${MAGENTA}\]${USER} \[$WHITE\]at \[$ORANGE\]${HOSTNAME} \[$WHITE\]in \[$BRIGHT_GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_YELLOW\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\] "
 
 #######################################
 # PS2 - Continuation interactive prompt
