@@ -40,12 +40,13 @@ function cwd() {
 
 # run a simple HTTP server w/ single command
 server () {
-    if [ "$1" != "" ]; then
-        server_port=$1
-    else
-        server_port=5000
+    if [ "$1" != "" ]
+        then
+            server_port=$1
+        else
+            server_port=5000
     fi
-    open "http://localhost:{$server_port}" && python -m SimpleHTTPServer $server_port
+    open http://localhost:$server_port && python -m SimpleHTTPServer $server_port
 }
 
 # DATABASES
@@ -121,6 +122,7 @@ else
 fi
 
 alias ~='cd ~'
+alias home="cd $HOME"
 alias ..='cd ..'
 alias ..2='cd ..'
 alias o='open '

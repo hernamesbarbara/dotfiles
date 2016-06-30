@@ -68,6 +68,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
+export _Z_NO_RESOLVE_SYMLINKS=1
 # Load `z` for even easier file nav (see https://github.com/rupa/z)
 if [ -f $(brew --prefix)/etc/profile.d/z.sh ]; then
     . $(brew --prefix)/etc/profile.d/z.sh
