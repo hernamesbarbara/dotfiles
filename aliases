@@ -211,3 +211,13 @@ function numberToWords() {
 }
 
 alias ppath="echo $PATH | tr : '\n'"
+
+function randstr { 
+    if pwgen -Bs "$1" 1 | pbcopy | pbpaste; then 
+        echo "random string copied to clipboard"
+        return 0
+    else 
+        echo "problem"
+        return 1
+    fi
+}
