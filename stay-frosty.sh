@@ -41,4 +41,24 @@ sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.pl
 # Examine the file, use SQL to query the sqlite database file:
 # echo 'SELECT datetime(LSQuarantineTimeStamp + 978307200, "unixepoch") as LSQuarantineTimeStamp, LSQuarantineAgentName, LSQuarantineOriginURLString, LSQuarantineDataURLString from LSQuarantineEvent;' | sqlite3 /Users/$USER/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2
 
+# Display the full path to the Finder window you are viewing
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true; killall Finder
 
+# Use column view in all Finder windows by default
+# http://www.defaults-write.com/change-default-view-style-in-os-x-finder/
+defaults write com.apple.finder FXPreferredViewStyle Clmv; killall Finder
+
+# always display scrollbars in Finder windows
+ defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Prevent macOS from automatically saving files to iCloud
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# Disable autocorrect
+# defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Don't send search queries to Apple
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
