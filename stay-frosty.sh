@@ -33,7 +33,8 @@ defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
 # Spotlight uploads your search terms in real time to Apple’s remote servers
 # https://support.apple.com/kb/PH18943?locale=en_US&viewlocale=en_US
 # https://gist.github.com/maxfenton/c5a316f4254d27b18cf3
-sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+# This seems to prevent Alfred.app from searching your files 
+# sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
 
 # macOS Quarantine stores information about ALL downloaded files in sqlite
 # db is stored in ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2
