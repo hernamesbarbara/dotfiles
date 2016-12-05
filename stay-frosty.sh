@@ -3,15 +3,6 @@
 
 # Limit phone-home metrics to Apple and make macOS a little more private
 
-# What is this "Bonjour" thing anyways...
-# https://support.apple.com/kb/PH18702?locale=en_US
-# https://raymii.org/s/snippets/OS_X_Turn_Bonjour_off_or_on_via_the_command_line.html
-sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
-
-# Disable 2-finger swipe nav gestures in Chrome b/c it's just annoying
-# http://osxdaily.com/2015/05/09/disable-swipe-navigation-google-chrome-mac/
-defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
-
 # Use the hosts file to block known malware, advertising & unwanted domains
 # Download reputable hosts file to /etc/hosts
 curl "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" | sudo tee -a /etc/hosts
@@ -26,8 +17,7 @@ sudo killall -HUP mDNSResponder
 # Uncomment to dump snapshot of cache entries to /var/log/system.log if you need to check 
 # tail -f /private/var/log/system.log
 
-# Turn macOS dashboard to speed things up / free up RAM & limit outside requests
-defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
+
 
 # Turn off Spotlight entirely
 # Spotlight uploads your search terms in real time to Apple’s remote servers
@@ -42,24 +32,16 @@ defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
 # Examine the file, use SQL to query the sqlite database file:
 # echo 'SELECT datetime(LSQuarantineTimeStamp + 978307200, "unixepoch") as LSQuarantineTimeStamp, LSQuarantineAgentName, LSQuarantineOriginURLString, LSQuarantineDataURLString from LSQuarantineEvent;' | sqlite3 /Users/$USER/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2
 
-# Display the full path to the Finder window you are viewing
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true; killall Finder
 
-# Use column view in all Finder windows by default
-# http://www.defaults-write.com/change-default-view-style-in-os-x-finder/
-defaults write com.apple.finder FXPreferredViewStyle Clmv; killall Finder
+# What is this "Bonjour" thing anyways...
+# https://support.apple.com/kb/PH18702?locale=en_US
+# https://raymii.org/s/snippets/OS_X_Turn_Bonjour_off_or_on_via_the_command_line.html
+sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
 
-# always display scrollbars in Finder windows
- defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 
-# Prevent macOS from automatically saving files to iCloud
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
-# Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
-sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
 # Disable autocorrect
 # defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-# Don't send search queries to Apple
-defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+
