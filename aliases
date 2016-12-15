@@ -85,6 +85,7 @@ fi
 
 alias excel="open -a Microsoft\ Excel"
 alias chrome="open -a Google\ Chrome"
+alias rodeo="open -a Rodeo"
 
 # interactive copy + move comamnds to prompt before overwriting files
 alias cp='cp -i'
