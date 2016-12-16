@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*- 
 
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # Limit phone-home metrics to Apple and make macOS a little more private
 
 # Use the hosts file to block known malware, advertising & unwanted domains
@@ -16,6 +26,33 @@ sudo killall -HUP mDNSResponder
 # macOS's `mDNSResponder` (multicast DNS daemon) puts entries into your system log
 # Uncomment to dump snapshot of cache entries to /var/log/system.log if you need to check 
 # tail -f /private/var/log/system.log
+
+# Disable 2-finger swipe nav gestures in Chrome b/c it's just annoying
+# http://osxdaily.com/2015/05/09/disable-swipe-navigation-google-chrome-mac/
+defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool false
+
+# Turn macOS dashboard to speed things up / free up RAM & limit outside requests
+defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
+
+# Display the full path to the Finder window you are viewing
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true; killall Finder
+
+# Use column view in all Finder windows by default
+# http://www.defaults-write.com/change-default-view-style-in-os-x-finder/
+# defaults write com.apple.finder FXPreferredViewStyle Clmv
+
+# Use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# always display scrollbars in Finder windows
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Prevent macOS from automatically saving files to iCloud
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Don't send search queries to Apple
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 
 
 
@@ -36,14 +73,7 @@ sudo killall -HUP mDNSResponder
 # What is this "Bonjour" thing anyways...
 # https://support.apple.com/kb/PH18702?locale=en_US
 # https://raymii.org/s/snippets/OS_X_Turn_Bonjour_off_or_on_via_the_command_line.html
-sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
-
-
-
-
-# Disable autocorrect
-# defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-
+# sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool YES
 
 # Ensure Microsoft isn't installing things without your knowledge.
 defaults write com.microsoft.autoupdate2 HowToCheck Manual
@@ -72,7 +102,6 @@ defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.5
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
-
 # Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
@@ -86,10 +115,6 @@ defaults write com.apple.finder _FXSortFoldersFirst -bool true
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
-# Use list view in all Finder windows by default
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
-
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
@@ -99,7 +124,6 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
-
 
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
