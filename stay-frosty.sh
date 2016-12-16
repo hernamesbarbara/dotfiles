@@ -45,3 +45,64 @@ sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMultica
 # defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 
+# Ensure Microsoft isn't installing things without your knowledge.
+defaults write com.microsoft.autoupdate2 HowToCheck Manual
+
+# Remove the Auto-Hide Dock Delay
+defaults write com.apple.Dock autohide-delay -float 0 && killall Dock
+
+# Speed Up Mission Control Animations
+defaults write com.apple.dock expose-animation-duration -float 0.12 && killall Dock
+
+# Stop Full Names from Copying with Email Addresses in OS X Mail
+# defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+# Enable Text Selection in Quick Look Windows
+defaults write com.apple.finder QLEnableTextSelection -bool TRUE;killall Finder
+
+# Always Show the User Library Folder
+chflags nohidden ~/Library/
+
+# set highlight colour to green instead of blue
+defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
+# revert with below command
+# defaults delete -g AppleHighlightColor
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+
+# Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
+sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Keep folders on top when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Expand the following File Info panes:
+# “General”, “Open with”, and “Sharing & Permissions”
+defaults write com.apple.finder FXInfoPanesExpanded -dict \
+  General -bool true \
+  OpenWith -bool true \
+  Privileges -bool true
+
+# Show indicator lights for open applications in the Dock
+defaults write com.apple.dock show-process-indicators -bool true
+
+
+# Don’t animate opening applications from the Dock
+defaults write com.apple.dock launchanim -bool false
+
+# Disable automatic emoji substitution (i.e. use plain text smileys)
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
