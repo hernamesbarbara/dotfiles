@@ -145,6 +145,16 @@ alias lst="ls --block-size=MB -lt"
 # `ls` only hidden files
 alias lh="ls -ld .[!.]* --block-size=MB"
 
+alias ls5="lst | head -n 5"
+alias ls10="lst | head -n 10"
+
+# cat with syntax highlighting (requires pygments which should be installed by default)
+alias cat='pygmentize -O style=solarizeddark -f console256 -g'
+
+# print path
+alias ppath="echo $PATH | tr : '\n'"
+
+
 function followers() {
     SCREEN_NAME=`t whoami | grep Name | cut -d',' -f1 | cut -d'e' -f2`
     SCREEN_NAME=`echo "$SCREEN_NAME" | xargs`
@@ -211,17 +221,4 @@ function numberToWords() {
     curl -s -X POST --data ${data} http://www.calculator.org/calculate-online/mathematics/text-number.aspx | grep ctl00_PlaceHolderMain_g_9554de2f_4c98_4d88_9305_ea23437965b8_ctl00 | grep -E -o ">.+<" | tr -d "<>"
 }
 
-alias ppath="echo $PATH | tr : '\n'"
 
-function randstr { 
-    if pwgen -Bs "$1" 1 | pbcopy | pbpaste; then 
-        echo "random string copied to clipboard"
-        return 0
-    else 
-        echo "problem"
-        return 1
-    fi
-}
-
-alias ls5="lst | head -n 5"
-alias ls10="lst | head -n 10"
