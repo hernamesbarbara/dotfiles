@@ -42,7 +42,8 @@
 # allow searching txt files
 --type-set=csv=.txt,.csv,.tsv
 
-
+# allow searching property list files (daemons and launch agents)
+--type-set=macos=.plist
 
 #make sure ack knows how to search common filetypes used in rails projects
 --type-add=css=scss

@@ -93,10 +93,18 @@ defaults write com.apple.finder QLEnableTextSelection -bool TRUE;killall Finder
 # Always Show the User Library Folder
 chflags nohidden ~/Library/
 
-# set highlight colour to green instead of blue
-defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
-# revert with below command
-# defaults delete -g AppleHighlightColor
+# Highlight color
+# Red      : `1.000000 0.733333 0.721569`
+# Orange   : `1.000000 0.874510 0.701961`
+# Yellow   : `1.000000 0.937255 0.690196`
+# Green    : `0.752941 0.964706 0.678431`
+# Blue     : `0.847059 0.847059 0.862745` (default)
+# Purple   : `0.968627 0.831373 1.000000`
+# Pink     : `0.968627 0.831373 1.000000`
+# Brown    : `0.929412 0.870588 0.792157`
+# Graphite : `0.847059 0.847059 0.862745`
+# Silver   : `0.776500 0.776500 0.776500` (custom)
+defaults write  NSGlobalDomain AppleHighlightColor -string '0.968627 0.831373 1.000000'    # Purple
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
