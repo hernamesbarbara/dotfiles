@@ -60,6 +60,12 @@ source ~/.aliases
 # source .bash_prompt
 source ~/.bash_prompt
 
+# use current working directory for title of iterm2 tabs
+if [ $ITERM_SESSION_ID ]; then
+  # export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+  export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
+fi
+
 source ~/greetoftheday
 export PGHOST=localhost
 export PGDATA=/usr/local/var/postgres
@@ -74,7 +80,7 @@ if [ -f $(brew --prefix)/etc/profile.d/z.sh ]; then
     . $(brew --prefix)/etc/profile.d/z.sh
 fi
 
-# use current working directory for title of iterm2 tabs
-if [ $ITERM_SESSION_ID ]; then
-  export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+
+if [ -f $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash ]; then
+    . $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash
 fi
