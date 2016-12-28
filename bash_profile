@@ -81,6 +81,6 @@ if [ -f $(brew --prefix)/etc/profile.d/z.sh ]; then
 fi
 
 
-if [ -f $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash ]; then
-    . $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash
-fi
+# if [ -f $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash ]; then
+#     . $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash
+# fi

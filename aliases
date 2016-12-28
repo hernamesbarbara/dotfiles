@@ -221,4 +221,4 @@ function numberToWords() {
     curl -s -X POST --data ${data} http://www.calculator.org/calculate-online/mathematics/text-number.aspx | grep ctl00_PlaceHolderMain_g_9554de2f_4c98_4d88_9305_ea23437965b8_ctl00 | grep -E -o ">.+<" | tr -d "<>"
 }
 
-
+alias ignore="gibo Python R SublimeText Node macOS Go Julia >> .gitignore"
