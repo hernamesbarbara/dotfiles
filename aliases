@@ -226,14 +226,14 @@ alias ignore="gibo Python R SublimeText Node macOS Go Julia >> .gitignore"
 # helper func to log things with timestamps
 TIMESTAMP_FORMAT='[%Y-%m-%d %H:%M:%S] >> '
 function log_msg {
-  if [ ! -z "$2" ]; then
-    echo "$1" | ts "$TIMESTAMP_FORMAT" 1>&2 >> $2
-  else
-    echo "$1" | ts "$TIMESTAMP_FORMAT" 1>&2
-  fi
-}
-
-function error_exit {
-  log_msg "$1" "$2"
-  exit 1
+    if command -v ts > /dev/null; then
+        echo "$@" | ts "$TIMESTAMP_FORMAT" > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            echo "$@" | ts "$TIMESTAMP_FORMAT"
+        else
+            echo "$@"
+        fi
+    else
+        echo "$@"
+    fi
 }
