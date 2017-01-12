@@ -222,3 +222,18 @@ function numberToWords() {
 }
 
 alias ignore="gibo Python R SublimeText Node macOS Go Julia >> .gitignore"
+
+# helper func to log things with timestamps
+TIMESTAMP_FORMAT='[%Y-%m-%d %H:%M:%S] >> '
+function log_msg {
+  if [ ! -z "$2" ]; then
+    echo "$1" | ts "$TIMESTAMP_FORMAT" 1>&2 >> $2
+  else
+    echo "$1" | ts "$TIMESTAMP_FORMAT" 1>&2
+  fi
+}
+
+function error_exit {
+  log_msg "$1" "$2"
+  exit 1
+}
