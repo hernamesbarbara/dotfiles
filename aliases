@@ -149,7 +149,7 @@ alias ls5="lst | head -n 5"
 alias ls10="lst | head -n 10"
 
 # cat with syntax highlighting (requires pygments which should be installed by default)
-alias cat='pygmentize -O style=solarizeddark -f console256 -g'
+# alias cat='pygmentize -O style=solarizeddark -f console256 -g'
 
 # print path
 alias ppath="echo $PATH | tr : '\n'"

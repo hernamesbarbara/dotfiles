@@ -1,19 +1,43 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
-"""snakify
+"""snakify - convert text to snake_case
+
+Usage:
+    snakify TEXT...
+    snakify -h | --help
+    snakify -v | --version
+
+Arguments:
+    TEXT        Text to be converted into snake_case
+
+Options:
+    -h --help           Show this message
+    -v --version        Version number 
+
+Examples:
+    1) cat example.txt | snakify
+    2) snakify lorem ipsum
+
 """
-from string import punctuation
+
 import sys
+import os
 from strutils import rm_non_ascii
 from strutils import rm_punct
 from strutils import FILETYPES
+import docopt
+
+NAME = os.path.basename(__file__)
+VERSION = "0.0.1"
 
 def snakify(txt):
     """
-    downcases and swap spaces for underscore.
+    Downcase & swap spaces with underscores.
     """
     if not isinstance(txt, basestring):
-        txt = str(txt)
+        txt = str(txt).strip()
+    if not txt:
+        raise TypeError("<snakify>() takes exactly 1 argument (0 given)")
     if txt.endswith(FILETYPES):
         txt, file_extension = txt.rsplit(".", 1)
     else:
@@ -24,6 +48,23 @@ def snakify(txt):
         s += ".{}".format(file_extension)
     return s
 
-if __name__ == "__main__":
-    txt = " ".join(sys.argv[1:])
-    print >> sys.stdout, "".join(snakify(txt))
+def _read_piped_input():
+    return os.linesep.join([line for line in sys.stdin]).strip()
+
+def main():
+    if not sys.stdin.isatty():
+        argv = _read_piped_input()
+    else:
+        argv = " ".join(sys.argv[1:])
+    args = docopt.docopt(__doc__, argv=argv, version="{}=={}".format(NAME, VERSION))
+    try:
+        output = snakify(args["TEXT"])
+        sys.stdout.write(output+os.linesep)
+        sys.exit(0)
+    except Exception, err:
+        sys.stderr.write(str(err)+os.linesep+os.linesep)
+        sys.stderr.write(__doc__)
+        sys.exit(1)
+
+if __name__ == '__main__':
+    main()
