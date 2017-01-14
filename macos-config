@@ -138,3 +138,10 @@ defaults write com.apple.dock launchanim -bool false
 
 # Disable automatic emoji substitution (i.e. use plain text smileys)
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
+
+# Disable IPv6 
+# https://en.wikipedia.org/wiki/IPv6#Privacy
+networksetup -setv6off Ethernet
+networksetup -setv6off Wi-Fi
+# networksetup -setv6automatic Ethernet
+# networksetup -setv6automatic Wi-Fi # turn it back on

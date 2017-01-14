@@ -16,6 +16,11 @@ PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/sbin
 
+# use gcc compiler installed with homebrew if possible
+if [ -f $(brew --prefix)/bin/gcc-6 ]; then
+    export CC=/usr/local/bin/gcc-6
+fi
+
 if [ -x /usr/libexec/path_helper ]; then
     eval `/usr/libexec/path_helper -s`
 fi
@@ -84,3 +89,5 @@ fi
 # if [ -f $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash ]; then
 #     . $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash
 # fi
+
+
