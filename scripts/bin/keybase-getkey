@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*- 
+
+function keybase-getkey() {
+    wget -qO - "https://keybase.io/$1/key.asc" | gpg --import -
+    exit 0
+}
