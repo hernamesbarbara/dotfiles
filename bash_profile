@@ -9,6 +9,7 @@ source ~/.miscrc
 *****************************************************************************
 '
 export HOMEBREW_PREFIX=$(brew --prefix)
+
 PATH=$HOMEBREW_PREFIX:$PATH
 PATH=$HOMEBREW_PREFIX/bin:$PATH
 PATH=$HOMEBREW_PREFIX/sbin:$PATH
@@ -22,7 +23,6 @@ fi
 
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 export MANPATH=$(brew --prefix coreutils)/libexec/gnuman:$MANPATH
-export PATH=$PATH
 
 # add julia
 PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
@@ -35,7 +35,7 @@ PATH=$PATH:$HOME/dotfiles/scripts/bin
 
 # go path enables you to use `go get`
 export GOPATH=$HOME/.go
-PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOPATH/bin
 
 complete -C '/usr/local/bin/aws_completer' aws
 PATH=$HOMEBREW_PREFIX/aws/bin:$PATH
@@ -80,7 +80,4 @@ if [ -f $(brew --prefix)/etc/profile.d/z.sh ]; then
     . $(brew --prefix)/etc/profile.d/z.sh
 fi
 
-
-# if [ -f $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash ]; then
-#     . $(brew --prefix)/etc/bash_completion.d/gibo-completion.bash
-# fi
+export PATH=$PATH
