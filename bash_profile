@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# sourcing several other miscellaneous configs I like
-source ~/.miscrc
+source ~/.privaterc
 
 : '
 *****************************************************************************

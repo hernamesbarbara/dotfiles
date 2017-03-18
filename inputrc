@@ -1,18 +1,40 @@
 #!/usr/bin/env bash
+# -*- coding: utf-8 -*- 
 
-set completion-ignore-case on
-
-#use up arrow to search history backwards
-"\e[A": history-search-backward
-"\e[B": history-search-forward
 $if Bash
   Space: magic-space
 $endif
-"\M-o": "\C-p\C-a\M-f "
-set completion-ignore-case on
-set visible-stats on
+
+
 set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set bell-style none
+set menu-complete-display-prefix on
+set visible-stats on
+set colored-stats on
+set expand-tilde off
+set show-all-if-ambiguous on
+set completion-ignore-case on
+
+# Immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
+set completion-query-items 200
+set skip-completed-text on
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# \C- means Ctrl plus another key
+# \M- means Meta (Option) plus another key
+# \e is the ESC character
+# \\ is a backslash
+# \" is a double quote
+# \' is a single quote
+
+
+"\M-o": "\C-p\C-a\M-f "
 "\M-s": menu-complete
+
 
 #This will let you to begin a command and hit the up-arrow
 #to search backwards through your history for commands starting
@@ -28,14 +50,16 @@ set show-all-if-ambiguous on
 "\e[D": backward-char
 
 
-
-# use alt key to jump b/w words. 
-# useful for iterm2 which has 
-# different key bindings than os x defaults
-# "\e[1;9D": backward-word
-# "\e[1;9C": forward-word
-
+# use alt/option key to jump b/w words. 
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
+
+# not totally sure what these do differently
+# "\e[1;5C": shell-forward-word
+# "\e[1;5D": shell-backward-word
+
 "\e[3~": kill-word
+
+
+
 
