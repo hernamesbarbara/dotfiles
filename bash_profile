@@ -37,7 +37,8 @@ export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 
 complete -C '/usr/local/bin/aws_completer' aws
-PATH=$HOMEBREW_PREFIX/aws/bin:$PATH
+export PATH=$HOMEBREW_PREFIX/aws/bin:$PATH
+export PATH="/usr/local/opt/qt/bin:$PATH"
 
 # helper for installing 3rd party libraries for us in Alfred.app workflows
 export ALFREDPATH=~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences/workflows/
@@ -77,6 +78,10 @@ export _Z_NO_RESOLVE_SYMLINKS=1
 # Load `z` for even easier file nav (see https://github.com/rupa/z)
 if [ -f $(brew --prefix)/etc/profile.d/z.sh ]; then
     . $(brew --prefix)/etc/profile.d/z.sh
+fi
+
+if [[ -x "$(which thefuck)" ]]; then 
+     eval "$(thefuck --alias)"
 fi
 
 export PATH=$PATH
