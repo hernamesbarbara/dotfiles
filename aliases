@@ -222,6 +222,7 @@ function numberToWords() {
 }
 
 alias ignore="gibo Python R SublimeText Node macOS Go Julia >> .gitignore"
+alias welcome='say -v Maged "أهلن وسهلا"'
 
 # helper func to log things with timestamps
 TIMESTAMP_FORMAT='[%Y-%m-%d %H:%M:%S] >> '
