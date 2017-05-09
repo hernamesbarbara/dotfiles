@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+source ~/.bashrc
 source ~/.privaterc
 
 : '
@@ -66,7 +67,6 @@ if [ $ITERM_SESSION_ID ]; then
   export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 fi
 
-source ~/greetoftheday
 export PGHOST=localhost
 export PGDATA=/usr/local/var/postgres
 
@@ -84,4 +84,5 @@ if [[ -x "$(which thefuck)" ]]; then
      eval "$(thefuck --alias)"
 fi
 
+source ~/greetoftheday
 export PATH=$PATH
