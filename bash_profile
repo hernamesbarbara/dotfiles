@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
-if [ -f ~/.bashrc ]; then
-   source ~/.bashrc
-fi
+# -*- coding: utf-8 -*- 
+# ~/.bash_profile
+
+for file in ~/.{bashrc,bash_prompt,privaterc,aliases}; do
+    [[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
+done

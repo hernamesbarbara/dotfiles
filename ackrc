@@ -59,8 +59,9 @@
 --type-set=json=.json
 
 
---type-set=py=ipynb,py
+--type-set=py=py
 --type-set=python=ipynb,py
+--type-set=ipynb=ipynb
 
 --type-set=r=.r,.R,.rmd,.Rmd
 --type-set=R=.r,.R,.rmd,.Rmd

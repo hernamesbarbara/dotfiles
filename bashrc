@@ -18,8 +18,6 @@ export HISTCONTROL=ignoreboth:erasedups
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend;
 
-source ~/.privaterc
-
 : '
 *****************************************************************************
 ***********************************<$PATH>***********************************
@@ -71,18 +69,6 @@ export PYTHON_EXE=$(which python)
 '
 # rvm shit
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# source aliases
-source ~/.aliases
-
-# source .bash_prompt
-source ~/.bash_prompt
-
-# use current working directory for title of iterm2 tabs
-if [ $ITERM_SESSION_ID ]; then
-  # export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
-  export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
-fi
 
 export PGHOST=localhost
 export PGDATA=/usr/local/var/postgres

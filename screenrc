@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*- 
+# ~/.screenrc
+
+# Force screen to startup using a login shell
+# This ensures your .dotfiles are loaded on macOS properly
+shell -"$SHELL"
