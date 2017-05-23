@@ -62,6 +62,8 @@ export ALFREDPATH=~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferen
 # virtualenv's default python interpreter when creating new envs
 export PYTHON_EXE=$(which python)
 
+export BROWSER=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+
 : '
 ******************************************************************************
 *********************************</$PATH>*************************************
