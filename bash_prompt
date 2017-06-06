@@ -92,7 +92,7 @@ function set_prompt() {
   fi
   
   # Set prompt content. 
-  local ps1="\[${reset}${color}\]${USER} \[$WHITE\]on \[$ORANGE\]${HOSTNAME} \[$WHITE\]in \[$BRIGHT_GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_RED\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$reset\] "
+  local ps1="\[${reset}${ORANGE}\]${USER} \[$WHITE\]on \[$BRIGHT_CYAN\]${HOSTNAME} \[$WHITE\]in \[$BRIGHT_GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_YELLOW\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$reset\] "
   
   # Preprend with colourized return status code from prior command
   PS1="${BOLD}${color}[${ex}]$reset $ps1 $reset" 
