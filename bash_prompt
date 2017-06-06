@@ -36,29 +36,37 @@ else
   MAGENTA="\033[1;31m"
   ORANGE="\033[1;33m"
   GREEN="\033[1;32m"
+  CYAN="\033[1;36m"
   PURPLE="\033[1;35m"
   WHITE="\033[1;37m"
+  
   BOLD=""
   RESET="\033[m"
+  
 fi
 
 export BRIGHT_GREEN="\033[01;32m"
 export BRIGHT_YELLOW="\033[01;33m"
+export BRIGHT_RED="\033[01;31m"
+export BRIGHT_BLACK="\033[01;30m"
+export BRIGHT_CYAN="\033[01;36m"
+
 export MAGENTA
 export ORANGE
 export GREEN
+export CYAN
 export PURPLE
 export WHITE
+
 export BOLD
 export RESET
 
 
-function parse_git_dirty() {
-  [[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
-
-function parse_git_branch() {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
 }
 
 ##################################
@@ -66,9 +74,27 @@ function parse_git_branch() {
 # \u    => Username
 # \h    => Hostname
 # \w    => Full pathname of current directory
-export PS1="\$? \[${BOLD}${MAGENTA}\]${USER} \[$WHITE\]at \[$ORANGE\]${HOSTNAME} \[$WHITE\]in \[$BRIGHT_GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_YELLOW\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\] "
+# \$?   => Exit status of previously run command
 
-#######################################
-# PS2 - Continuation interactive prompt
-export PS2="\[$ORANGE\]→ \[$RESET\]"
-##################################
+export PROMPT_COMMAND=set_prompt
+
+function set_prompt() {
+  # Capture exit code of last command
+  local ex=$?
+  local reset="$reset"
+  local color;
+
+  # set color to red if prior cmd exited non-zero
+  if [[ "$ex" -ne 0 ]]; then
+    color="$BRIGHT_RED";
+  else
+    color="$BRIGHT_GREEN";
+  fi
+  
+  # Set prompt content. 
+  local ps1="\[${reset}${color}\]${USER} \[$WHITE\]on \[$ORANGE\]${HOSTNAME} \[$WHITE\]in \[$BRIGHT_GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_RED\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$reset\] "
+  
+  # Preprend with colourized return status code from prior command
+  PS1="${BOLD}${color}[${ex}]$reset $ps1 $reset" 
+  PS2="\[$ORANGE\]→ \[$reset\]"
+}
