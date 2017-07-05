@@ -125,7 +125,7 @@ fi
 alias ~='cd ~'
 alias home="cd $HOME"
 alias ..='cd ..'
-alias ..2='cd ..'
+alias ..2='cd ../../'
 alias o='open '
 alias h='history '
 alias ls="ls ${colorflag}"
@@ -249,3 +249,5 @@ function log_msg {
         echo "$@"
     fi
 }
+
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
