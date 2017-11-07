@@ -5,3 +5,11 @@
 # Force screen to startup using a login shell
 # This ensures your .dotfiles are loaded on macOS properly
 shell -"$SHELL"
+
+
+# Cache 10000 lines for scroll back
+defscrollback 10000
+
+# Ctrl+A is for jumping to BOL yaddamean
+# Bind escape to Ctrl+F instead, so detach becomes Ctrl+F, D
+escape ^Ff

@@ -91,6 +91,9 @@ alias rodeo="open -a Rodeo"
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias sr='screen -rd'
+function sn() { screen -S "$@"; }
+
 
 # untar / archive data formats
 alias untar='tar xvf'
