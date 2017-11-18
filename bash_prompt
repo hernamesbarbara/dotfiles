@@ -9,11 +9,6 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
   export TERM=xterm-256color
 fi
 
-# use current working directory for title of iterm2 tabs
-if [ $ITERM_SESSION_ID ]; then
-  export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
-fi
-
 if tput setaf 1 &> /dev/null; then
   tput sgr0
   if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
@@ -76,13 +71,36 @@ function parse_git_branch {
 # \w    => Full pathname of current directory
 # \$?   => Exit status of previously run command
 
-export PROMPT_COMMAND=set_prompt
+# Add command to PROMPT_COMMAND (runs before each command)
+# Makes sure ithe command is not already in PROMPT_COMMAND
+append_to_prompt_command() {
+  if [[ ":$PROMPT_COMMAND:" != *":$1:"* ]]; then
+    PROMPT_COMMAND="${PROMPT_COMMAND:+"$PROMPT_COMMAND:"}$1"
+  fi
+}
+
+# Set iTerm title to show current directory
+if [ $ITERM_SESSION_ID ]; then
+  append_to_prompt_command 'echo -ne "\033]0;${PWD##*/}\007"'
+fi
 
 function set_prompt() {
   # Capture exit code of last command
   local ex=$?
   local reset="$reset"
   local color;
+
+  ###############
+  ## cool symbols
+  ###############
+  # symbol_yhat_lower="\u0177"
+  # symbol_yhat_upper="\u0176"
+  symbol_american_flag=$(echo -e "🇺🇸")
+  # symbol_lightning_bolt="⚡ "
+  ###############
+  ###############
+
+  local symbol="$symbol_american_flag"
 
   # set color to red if prior cmd exited non-zero
   if [[ "$ex" -ne 0 ]]; then
@@ -92,9 +110,12 @@ function set_prompt() {
   fi
   
   # Set prompt content. 
-  local ps1="\[${reset}${ORANGE}\]${USER} \[$WHITE\]on \[$BRIGHT_CYAN\]${HOSTNAME} \[$WHITE\]in \[$BRIGHT_GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$BRIGHT_YELLOW\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$reset\] "
+  local ps1="$symbol  \[${reset}${ORANGE}\]${USER} $symbol  \[$WHITE\]on \[$BRIGHT_CYAN\]${HOSTNAME} \[$WHITE\]in \[$BRIGHT_GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\[$BRIGHT_YELLOW\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$reset\] "
   
   # Preprend with colourized return status code from prior command
   PS1="${BOLD}${color}[${ex}]$reset $ps1 $reset" 
   PS2="\[$ORANGE\]→ \[$reset\]"
 }
+
+export PROMPT_COMMAND=set_prompt
+
