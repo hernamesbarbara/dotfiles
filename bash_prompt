@@ -56,6 +56,8 @@ export WHITE
 export BOLD
 export RESET
 
+export HIGH_INTENSITY_PURPLE="\033[0;95m"
+
 
 function parse_git_dirty {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
@@ -79,6 +81,10 @@ append_to_prompt_command() {
   fi
 }
 
+subtract_one() {
+  echo "$(expr $1 - 1)"
+}
+
 # Set iTerm title to show current directory
 if [ $ITERM_SESSION_ID ]; then
   append_to_prompt_command 'echo -ne "\033]0;${PWD##*/}\007"'
@@ -89,6 +95,7 @@ function set_prompt() {
   local ex=$?
   local reset="$reset"
   local color;
+  local cur_cmd="\#"
 
   ###############
   ## cool symbols
@@ -110,10 +117,12 @@ function set_prompt() {
   fi
   
   # Set prompt content. 
-  local ps1="$symbol  \[${reset}${ORANGE}\]${USER} $symbol  \[$WHITE\]on \[$BRIGHT_CYAN\]${HOSTNAME} \[$WHITE\]in \[$BRIGHT_GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\[$BRIGHT_YELLOW\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$reset\] "
+  local ps1="$symbol  \[${reset}${ORANGE}\]${USER} $symbol  \[$WHITE\]on \[$BRIGHT_CYAN\]${HOSTNAME} \[$WHITE\]in \[$BRIGHT_GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\[$BRIGHT_YELLOW\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$WHITE\]\[$reset\] "
   
   # Preprend with colourized return status code from prior command
-  PS1="${BOLD}${color}[${ex}]$reset $ps1 $reset" 
+  # PS1="${BOLD}${color}[${ex}]$reset $ps1 $reset" 
+  
+  PS1="${BOLD}${color}[${cur_cmd}]$reset $ps1 $reset" 
   PS2="\[$ORANGE\]→ \[$reset\]"
 }
 
