@@ -91,6 +91,8 @@ alias rodeo="open -a Rodeo"
 alias cp='cp -i'
 alias mv='mv -i'
 
+# screen helpers
+alias s='screen -ls'
 alias sr='screen -rd'
 function sn() { screen -S "$@"; }
 
@@ -159,6 +161,10 @@ alias lh="ls -ld .[!.]* --block-size=MB"
 alias ls5="lst | head -n 5"
 alias ls10="lst | head -n 10"
 
+# count files in a directory 
+# (e.g. lc ./data/*.csv counts number of csvs)
+function lc() { ls -1aqf "$@" | wc -l; }
+
 # cat with syntax highlighting (requires pygments which should be installed by default)
 alias ccat='pygmentize -O style=solarizeddark -f console256 -g'
 
@@ -193,9 +199,6 @@ function github() {
         open $giturl
     fi
 }
-
-# Query Wikipedia via console over DNS
-mwiki() { dig +short txt "$*".wp.dg.cx; }
 
 # Enter the matrix
 alias matrix='COL=$(( $(tput cols) / 2 )); clear; tput setaf 2; while :; do tput cup $((RANDOM%COL)) $((RANDOM%COL)); printf "%$((RANDOM%COL))s" $((RANDOM%2)); done'
