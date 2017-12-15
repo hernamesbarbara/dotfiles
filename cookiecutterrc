@@ -1,0 +1,5 @@
+default_context:
+    full_name: "Austin Ogilvie"
+    email: "me@austinogilvie.com"
+    github_username: "hernamesbarbara"
+cookiecutters_dir: "~/.cookiecutters/"
