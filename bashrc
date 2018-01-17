@@ -85,3 +85,6 @@ fi
 
 source ~/greetoftheday
 export PATH=$PATH
+
+# added by travis gem
+[ -f /Users/hernamesbarbara/.travis/travis.sh ] && source /Users/hernamesbarbara/.travis/travis.sh

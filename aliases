@@ -156,7 +156,7 @@ alias lsd='ls --block-size=MB -dl */'
 alias lst="ls --block-size=MB -lt"
 
 # `ls` only hidden files
-alias lh="ls -ld .[!.]* --block-size=MB"
+function lh() { ls -ld .?*  --block-size=MB "$@"; }
 
 alias ls5="lst | head -n 5"
 alias ls10="lst | head -n 10"
