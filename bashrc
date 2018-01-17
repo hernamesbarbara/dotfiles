@@ -88,3 +88,10 @@ export PATH=$PATH
 
 # added by travis gem
 [ -f /Users/hernamesbarbara/.travis/travis.sh ] && source /Users/hernamesbarbara/.travis/travis.sh
+
+# use sublime text as your default text editor
+
+
+if [[ -x "$(which subl)" ]]; then 
+     export EDITOR="$(which subl)"
+fi
