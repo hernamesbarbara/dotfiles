@@ -59,6 +59,9 @@ export PATH="/usr/local/opt/qt/bin:$PATH"
 # helper for installing 3rd party libraries for us in Alfred.app workflows
 export ALFREDPATH=~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences/workflows/
 
+# load pyenv for python every time we open a new shell
+export PYENV_ROOT="$HOME/.pyenv"
+
 # virtualenv's default python interpreter when creating new envs
 export PYTHON_EXE=$(which python)
 
