@@ -25,12 +25,19 @@ shopt -s histappend;
 '
 export HOMEBREW_PREFIX=$(brew --prefix)
 
+# load pyenv for python every time we open a new shell
+# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+# export PYENV_ROOT="$HOME/.pyenv"
+
+
 PATH=$HOMEBREW_PREFIX:$PATH
 PATH=$HOMEBREW_PREFIX/bin:$PATH
 PATH=$HOMEBREW_PREFIX/sbin:$PATH
 PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting 
 PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/sbin
+
+# PATH=$PATH:$PYENV_ROOT/bin
 
 if [ -x /usr/libexec/path_helper ]; then
     eval `/usr/libexec/path_helper -s`
@@ -59,11 +66,8 @@ export PATH="/usr/local/opt/qt/bin:$PATH"
 # helper for installing 3rd party libraries for us in Alfred.app workflows
 export ALFREDPATH=~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences/workflows/
 
-# load pyenv for python every time we open a new shell
-export PYENV_ROOT="$HOME/.pyenv"
-
 # virtualenv's default python interpreter when creating new envs
-export PYTHON_EXE=$(which python)
+export PYTHON_EXE="$(which python)"
 
 export BROWSER=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 
