@@ -1,8 +1,10 @@
 #!/usr/bin/env r
 # -*- coding: utf-8 -*- 
 
+.libPaths("/usr/local/lib/R/site-library/")
+
 local({r <- getOption("repos")
-       r["CRAN"] <- "http://cran.r-project.org" 
+       r["CRAN"] <- "https://cran.r-project.org" 
        options(repos=r)
 })
 
@@ -22,10 +24,40 @@ options(prompt="> ")
 options(continue="... ")
  
 options(width = 80)
- 
+
+
+#' Add together two numbers.
+#' 
+#' @param package_name String name of package to check for.
+#' @return TRUE if \code{package_name} is installed, else FALSE.
+#' @examples
+#' is.installed('devtools')
+is.installed <- function(package_name) {
+    package_name %in% rownames(utils::installed.packages())
+}
+
+##############################
+# devtools install requires: 
+# brew install coretools
+# brew install libgit2
+# brew install zlib
+##############################
+
+if (!is.installed('devtools')) {
+    utils::install.packages('devtools', repos=getOption("repos")["CRAN"], dep=TRUE)
+} else {
+    library(devtools)
+}
+
+if(Sys.getenv("TERM") == "xterm-256color") {
+    if(!is.installed('colorout')) {
+        install_github('jalvesaq/colorout')
+    } else {
+        library(colorout)
+    }
+}
+
 q <- function (save="no", ...) {
   quit(save=save, ...)
 }
 
-if(Sys.getenv("TERM") == "xterm-256color")
-  library("colorout")

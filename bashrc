@@ -90,7 +90,7 @@ if [[ -x "$(which thefuck)" ]]; then
      eval "$(thefuck --alias)"
 fi
 
-source ~/greetoftheday
+source ~/.greetoftheday
 export PATH=$PATH
 
 # added by travis gem
