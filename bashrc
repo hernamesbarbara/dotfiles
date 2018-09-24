@@ -96,3 +96,7 @@ export PATH=$PATH
 if [[ -x "$(which subl)" ]]; then 
      export EDITOR="$(which subl)"
 fi
+
+
+# heroku autocomplete setup
+HEROKU_AC_BASH_SETUP_PATH=~/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
