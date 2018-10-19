@@ -2,7 +2,8 @@ module.exports = {
   "env": {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
@@ -34,7 +35,7 @@ module.exports = {
         "ignoreRestSiblings": true
       }
     ],
-    "no-console": [process.env.NODE_ENV === "production" ? "error" : "warn"],
-    "no-debugger": [process.env.NODE_ENV === "production" ? "error" : "warn"]
+    "no-console": [process.env.NODE_ENV === "production" ? "warn" : "off"],
+    "no-debugger": [process.env.NODE_ENV === "production" ? "warn" : "off"]
   }
 };
