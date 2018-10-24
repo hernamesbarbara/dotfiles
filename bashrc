@@ -24,12 +24,13 @@ shopt -s histappend;
 *****************************************************************************
 '
 export HOMEBREW_PREFIX=$(brew --prefix)
+export HOMEBREW_NO_ANALYTICS=1
 
 
 PATH=$HOMEBREW_PREFIX:$PATH
 PATH=$HOMEBREW_PREFIX/bin:$PATH
 PATH=$HOMEBREW_PREFIX/sbin:$PATH
-PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting 
+PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting
 PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/sbin
 
@@ -80,7 +81,7 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-if [[ -x "$(which thefuck)" ]]; then 
+if [[ -x "$(which thefuck)" ]]; then
      eval "$(thefuck --alias)"
 fi
 
@@ -93,7 +94,7 @@ export PATH=$PATH
 # use sublime text as your default text editor
 
 
-if [[ -x "$(which subl)" ]]; then 
+if [[ -x "$(which subl)" ]]; then
      export EDITOR="$(which subl)"
 fi
 
