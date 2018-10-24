@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-is_valid_command () { 
+is_valid_command () {
     : '
-    Use 1st arg for command substitution. concat 1..n args together 
+    Use 1st arg for command substitution. concat 1..n args together
         is_valid_command "ls --color -F --quote-name" => splits into `ls` + `--color...`
     '
     i=0
@@ -15,14 +15,14 @@ is_valid_command () {
         fi
         i=$[i +1]
     done
-    type $cmd_str &> /dev/null && 
+    type $cmd_str &> /dev/null &&
         eval $(echo "$cmd_str $param_str") &> /dev/null
         # debug with `echo "$?"`
 }
 
 # copy working directory
 # or pass filename to get the path to that file
-# replace your username with tilde ~/ 
+# replace your username with tilde ~/
 # on OS X you can install `greadlink` via: `brew install coreutils`
 function cwd() {
     if [ "$1" != "" ]
@@ -47,6 +47,23 @@ server () {
             server_port=5000
     fi
     open http://localhost:$server_port && python -m SimpleHTTPServer $server_port
+}
+
+random_words () {
+    if [ "$1" != "" ]
+    then
+        local n_words=$1
+    else
+        local n_words=4
+    fi
+    if [ "$2" != "" ]
+    then
+        local sep="$2"
+    else
+        local sep="-"
+    fi
+    local words=$(echo $(egrep -v "é|'s$|[Åå]|[Øø]" /usr/share/dict/words | shuf --random-source=/dev/random -n"$n_words"))
+    echo -e "$words" | sed "s/ /$sep/g"
 }
 
 # DATABASES
@@ -95,7 +112,7 @@ function sn() { screen -S "$@"; }
 # untar / archive data formats
 alias untar='tar xvf'
 
-# dircolors is only relevant if you are using 
+# dircolors is only relevant if you are using
 if is_valid_command dircolors; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -109,12 +126,12 @@ if is_valid_command ls -F --color --quote-name; then
     # GNU `ls`
     # -F            => append indicator (e.g. * for executables and / for directories)
     # --quote-name  => surround folder names in quotes
-    # -N            => print raw entry names 
+    # -N            => print raw entry names
     colorflag="-FN --color"
-else 
+else
     # OS X `ls`
-    # -G use colors 
-    # -p add trailing slash to directories 
+    # -G use colors
+    # -p add trailing slash to directories
     # -F append * for executables
     colorflag="-GFp"
 fi
