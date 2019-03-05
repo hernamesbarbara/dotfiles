@@ -27,12 +27,12 @@ export HOMEBREW_PREFIX=$(brew --prefix)
 export HOMEBREW_NO_ANALYTICS=1
 
 
-PATH=$HOMEBREW_PREFIX:$PATH
-PATH=$HOMEBREW_PREFIX/bin:$PATH
-PATH=$HOMEBREW_PREFIX/sbin:$PATH
-PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting
-PATH=$PATH:$HOME/bin
-PATH=$PATH:$HOME/sbin
+export PATH=$HOMEBREW_PREFIX:$PATH
+export PATH=$HOMEBREW_PREFIX/bin:$PATH
+export PATH=$HOMEBREW_PREFIX/sbin:$PATH
+export PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/sbin
 
 # PATH=$PATH:$PYENV_ROOT/bin
 
@@ -42,23 +42,34 @@ fi
 
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 export MANPATH=$(brew --prefix coreutils)/libexec/gnuman:$MANPATH
+export MANPATH=/usr/share/man:$MANPATH
+
 
 # add julia
-PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
+export PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
 
 # add MacTex LaTeX distribution (requried for Octave)
-PATH=$PATH:/usr/texbin
+export PATH=$PATH:/usr/texbin
 
 # add scripts to path to be able to use them from anywhere on your mac
-PATH=$PATH:$HOME/dotfiles/scripts/bin
+export PATH=$PATH:$HOME/dotfiles/scripts/bin
 
 # go path enables you to use `go get`
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 
+export PATH=$PATH:"/usr/X11/bin"
+
 complete -C '/usr/local/bin/aws_completer' aws
 export PATH=$HOMEBREW_PREFIX/aws/bin:$PATH
 export PATH="/usr/local/opt/qt/bin:$PATH"
+
+export MAGICK_HOME="$(brew --prefix)/Cellar/imagemagick/$(brew info imagemagick --json | jq -r .[0].versions.stable)"
+export PATH="$MAGICK_HOME/bin:$PATH"
+
+# On Linux machines add $MAGICK_HOME/lib to the LD_LIBRARY_PATH env variable
+#export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
+#export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
 # helper for installing 3rd party libraries for us in Alfred.app workflows
 export ALFREDPATH=~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences/workflows/
@@ -101,3 +112,5 @@ fi
 
 # heroku autocomplete setup
 HEROKU_AC_BASH_SETUP_PATH=~/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
+
+# export DISPLAY=:0
