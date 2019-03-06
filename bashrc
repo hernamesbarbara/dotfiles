@@ -34,8 +34,6 @@ export PATH=$PATH:$HOME/.rvm/bin        # Add RVM to PATH for scripting
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/sbin
 
-# PATH=$PATH:$PYENV_ROOT/bin
-
 if [ -x /usr/libexec/path_helper ]; then
     eval `/usr/libexec/path_helper -s`
 fi
@@ -43,7 +41,6 @@ fi
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 export MANPATH=$(brew --prefix coreutils)/libexec/gnuman:$MANPATH
 export MANPATH=/usr/share/man:$MANPATH
-
 
 # add julia
 export PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
@@ -64,12 +61,8 @@ complete -C '/usr/local/bin/aws_completer' aws
 export PATH=$HOMEBREW_PREFIX/aws/bin:$PATH
 export PATH="/usr/local/opt/qt/bin:$PATH"
 
-export MAGICK_HOME="$(brew --prefix)/Cellar/imagemagick/$(brew info imagemagick --json | jq -r .[0].versions.stable)"
-export PATH="$MAGICK_HOME/bin:$PATH"
-
-# On Linux machines add $MAGICK_HOME/lib to the LD_LIBRARY_PATH env variable
-#export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib"
-#export DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH
+# export MAGICK_HOME="$(brew --prefix)/Cellar/imagemagick/$(brew info imagemagick --json | jq -r .[0].versions.stable)"
+# export PATH="$MAGICK_HOME/bin:$PATH"
 
 # helper for installing 3rd party libraries for us in Alfred.app workflows
 export ALFREDPATH=~/Library/Application\ Support/Alfred\ 2/Alfred.alfredpreferences/workflows/
@@ -102,13 +95,10 @@ export PATH=$PATH
 # added by travis gem
 [ -f /Users/hernamesbarbara/.travis/travis.sh ] && source /Users/hernamesbarbara/.travis/travis.sh
 
-# use sublime text as your default text editor
-
-
+# use sublime text as editor
 if [[ -x "$(which subl)" ]]; then
      export EDITOR="$(which subl)"
 fi
-
 
 # heroku autocomplete setup
 HEROKU_AC_BASH_SETUP_PATH=~/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
