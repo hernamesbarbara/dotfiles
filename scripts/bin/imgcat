@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
 
 # tmux requires unrecognized OSC sequences to be wrapped with DCS tmux;
 # <sequence> ST, and for all ESCs in <sequence> to be replaced with ESC ESC. It
@@ -49,12 +50,11 @@ function b64_decode() {
     base64 $BASE64ARG
 }
 
-# print_image filename inline base64contents print_filename
+# print_image filename inline base64contents print_flag
 #   filename: Filename to convey to client
 #   inline: 0 or 1
 #   base64contents: Base64-encoded contents
-#   print_filename: If non-empty, print the filename
-#                   before outputting the image
+#   print_flag: if 0 or empty, do NOT print filename/URL. if 1 or non-empty, print filename/URL
 function print_image() {
     print_osc
     printf '1337;File='
@@ -68,8 +68,11 @@ function print_image() {
     printf "%s" "$3"
     print_st
     printf '\n'
-    if [[ -n "$4" ]]; then
-      echo $1
+
+    if [ -z "$4" ]; then
+        echo "$1"
+    elif [ "$4" -eq 0 ]; then
+        print_flag=false
     fi
 }
 
@@ -78,7 +81,7 @@ function error() {
 }
 
 function show_help() {
-    echo "Usage: imgcat [--no-print] filename ..." 1>& 2
+    echo "Usage: imgcat [--no-print] (--url URL | FILENAME ...)" 1>& 2
     echo "   or: cat filename | imgcat" 1>& 2
 }
 
@@ -107,8 +110,6 @@ check_dependency awk
 check_dependency base64
 check_dependency wc
 
-print_filename=1
-
 # Look for command line flags.
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -117,13 +118,13 @@ while [ $# -gt 0 ]; do
         exit
         ;;
     -N|--no-print)
-        print_filename=0
+        print_flag=0
         ;;
-    -u|--url)
+    -U|--url)
         check_dependency curl
         encoded_image=$(curl -s "$2" | b64_encode) || (error "No such file or url $2"; exit 2)
         has_stdin=f
-        print_image "$2" 1 "$encoded_image" "$print_filename"
+        print_image "$2" 1 "$encoded_image" "$print_flag"
         set -- ${@:1:1} "-u" ${@:3}
         if [ "$#" -eq 2 ]; then
             exit
@@ -137,7 +138,7 @@ while [ $# -gt 0 ]; do
     *)
         if [ -r "$1" ] ; then
             has_stdin=f
-            print_image "$1" 1 "$(b64_encode < "$1")" "$print_filename"
+            print_image "$1" 1 "$(b64_encode < "$1")" "$print_flag"
         else
             error "imgcat: $1: No such file or directory"
             exit 2
