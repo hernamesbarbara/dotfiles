@@ -187,7 +187,7 @@ man() {
 }
 
 function ignore() {
-    gibo Python R SublimeText Node macOS Go Julia VisualStudioCode Xcode >> .gitignore
+    gibo dump Python R SublimeText Node macOS Go Julia VisualStudioCode Xcode >> .gitignore
     echo ".csv" >> .gitignore
     echo "tmp/*" >> .gitignore
 
