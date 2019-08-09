@@ -51,10 +51,6 @@ export PATH=$PATH:/usr/texbin
 # add scripts to path to be able to use them from anywhere on your mac
 export PATH=$PATH:$HOME/dotfiles/scripts/bin
 
-# go path enables you to use `go get`
-export GOPATH=$HOME/.go
-export PATH=$PATH:$GOPATH/bin
-
 export PATH=$PATH:"/usr/X11/bin"
 
 complete -C '/usr/local/bin/aws_completer' aws
@@ -97,9 +93,13 @@ export PATH=$PATH
 [ -f /Users/hernamesbarbara/.travis/travis.sh ] && source /Users/hernamesbarbara/.travis/travis.sh
 
 # use sublime text as editor
-if [[ -x "$(which subl)" ]]; then
-     export EDITOR="$(which subl)"
+if [[ -x "$(which code)" ]]; then
+     export EDITOR="$(which code)"
 fi
+
+# go path enables you to use `go get`
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
 
 # heroku autocomplete setup
 HEROKU_AC_BASH_SETUP_PATH=~/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
