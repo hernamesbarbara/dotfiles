@@ -103,3 +103,4 @@ vignettes/*.pdf
 sftp-config.json
 .RData
 
+node_modules/
