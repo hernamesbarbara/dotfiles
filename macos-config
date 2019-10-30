@@ -104,7 +104,12 @@ chflags nohidden ~/Library/
 # Brown    : `0.929412 0.870588 0.792157`
 # Graphite : `0.847059 0.847059 0.862745`
 # Silver   : `0.776500 0.776500 0.776500` (custom)
-defaults write  NSGlobalDomain AppleHighlightColor -string '0.968627 0.831373 1.000000'    # Purple
+# Pink2 1.000000 0.000000 0.256785 (custom)
+# Pink3 1.000000 0.501820 0.593916 (custom)
+
+defaults write  NSGlobalDomain AppleHighlightColor -string '1.000000 0.501820 0.593916'    # Pink3
+
+
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
