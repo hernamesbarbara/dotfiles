@@ -1,0 +1,2 @@
+# show ONLY hidden files + directories
+function lh() { ls -ld .?*  --block-size=MB "$@"; }    # list hidden files only

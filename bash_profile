@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*- 
 # ~/.bash_profile
 
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 for file in ~/.{bashrc,bash_prompt,privaterc,aliases,bash_aliases,zrc,gitaliases}; do
     [[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done

@@ -1,0 +1,9 @@
+function last_cmd_status () {
+  if [ $? = 0 ]; then
+    echo -e '\e[32m0\e[0m'
+    return 0
+  else
+    echo -e '\e[31m$?\e[0m'
+  return $?
+fi
+}

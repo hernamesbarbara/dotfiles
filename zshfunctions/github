@@ -1,0 +1,13 @@
+# Call from a local repo to open the repository on github in browser
+function github() {
+ giturl=$(git config --get remote.origin.url)
+ if [ -z "$giturl" ]
+    then
+        echo "Not a git repository or no remote.origin.url set";
+    else
+        giturl=${giturl/git\@github\.com\:/https://github.com/}
+        giturl=${giturl/\.git//}
+        echo $giturl
+        open $giturl
+    fi
+}

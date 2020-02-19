@@ -39,6 +39,6 @@ function o() {
 }
 
 # cat with syntax highlighting (requires pygments which should be installed by default)
-alias ccat='pygmentize -O style=solarizeddark -f console256 -g'
+alias ccat='pygmentize -O style=solarized-dark -f console256 -g'
 
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"

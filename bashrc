@@ -105,3 +105,6 @@ export PATH=$PATH:$GOPATH/bin
 HEROKU_AC_BASH_SETUP_PATH=~/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
 
 export DISPLAY=:0
+
+source $HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br
+
