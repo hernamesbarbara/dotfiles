@@ -49,7 +49,7 @@ export PATH=$PATH:/Applications/Julia-0.2.1.app/Contents/Resources/julia/bin
 export PATH=$PATH:/usr/texbin
 
 # add scripts to path to be able to use them from anywhere on your mac
-export PATH=$PATH:$HOME/dotfiles/scripts/bin
+export PATH=$PATH:$HOME/scripts/bin
 
 export PATH=$PATH:"/usr/X11/bin"
 
