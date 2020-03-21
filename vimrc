@@ -1,8 +1,8 @@
 set nocompatible
-set bs=2
-set ts=4
-set sw=4
-set number
-" shows row and column number at bottom right corner
 set ruler
+
+set number        " shows row and col nums in bottom right 
+set tabstop=4 shiftwidth=4 expandtab
+set autoindent    " auto indent same num as prev line
+
 syntax on
