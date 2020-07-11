@@ -108,7 +108,7 @@ chflags nohidden ~/Library/
 # Pink3 1.000000 0.501820 0.593916 (custom)
 
 defaults write  NSGlobalDomain AppleHighlightColor -string '1.000000 0.501820 0.593916'    # Pink3
-
+defaults write  NSGlobalDomain AppleHighlightColor -string '0.847059 0.847059 0.862745'    # Graphite
 
 
 # Expand save panel by default
