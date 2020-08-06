@@ -83,6 +83,8 @@ alias rmswp="find . -name '*.swp' -type f -delete"
 alias rmpyc="find . -name '*.pyc' -type f -delete"
 alias rmjunk="rmdss && rmswo && rmswp && rmpyc && clear"
 
+alias today="printf "$(date --iso-8601=date)" | pbcopy"    # copy today's date in ISO format to clipboard
+
 # find file by name within current working directory
 alias findh="find . -name "
 
