@@ -1,3 +1,7 @@
+export ZSH="/Users/hernamesbarbara/.oh-my-zsh"
+
+
+
 echo $(setopt)
 echo 
 
@@ -7,6 +11,7 @@ setopt AUTO_CD
 ####################################
 # HISTORY STUFF
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HIST_STAMPS="yyyy-mm-dd"
 setopt EXTENDED_HISTORY
 SAVEHIST=10000
 HISTSIZE=10000
@@ -24,30 +29,6 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 # removes blank lines from history
 setopt HIST_REDUCE_BLANKS
-####################################
-
-
-####################################
-# ALIASES
-alias excel="open -a Microsoft\ Excel"
-alias chrome="open -a Google\ Chrome"
-alias la='ls -lha --block-size=MB'
-alias lh='ls -ld .[!.]* --block-size=MB'
-alias ll='ls -lh --block-size=MB'
-alias ls='ls -FN --color'
-alias ls10='lst | head -n 10'
-alias ls5='lst | head -n 5'
-alias lsd='ls --block-size=MB -dl */'
-alias lst='ls --block-size=MB -lt'
-alias cp='cp -i'
-alias h='history '
-alias ..='cd ..'
-alias ..2='cd ../../'
-alias ccat='pygmentize -O style=solarizeddark -f console256 -g'
-alias mv='mv -i'
-alias ~='cd ~'
-alias untar='tar xvf'
-####################################
 
 ####################################
 # FUNCTIONS
@@ -83,6 +64,14 @@ source /usr/local/etc/bash_completion.d/*
 
 export TERM="xterm-256color"
 
-ZSH_THEME="avit"
+
+# ZSH_THEME="avit"
+ZSH_THEME="robbyrussell"
+
+plugins=(git zsh-z)
+
+source $ZSH/oh-my-zsh.sh
+
+export PATH="$PATH:~/bin"
 
 
