@@ -32,10 +32,10 @@ sudo killall -HUP mDNSResponder
 defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool false
 
 # Turn macOS dashboard to speed things up / free up RAM & limit outside requests
-defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
+# defaults write com.apple.dashboard mcx-disabled -boolean YES && killall Dock
 
 # Display the full path to the Finder window you are viewing
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true; killall Finder
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true && killall Finder
 
 # Use column view in all Finder windows by default
 # http://www.defaults-write.com/change-default-view-style-in-os-x-finder/
@@ -55,6 +55,8 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 
 
+
+defaults write com.apple.dock autohide-time-modifier -float 0.25;killall Dock
 
 # Turn off Spotlight entirely
 # Spotlight uploads your search terms in real time to Apple’s remote servers

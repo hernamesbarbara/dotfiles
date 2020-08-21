@@ -1,12 +1,10 @@
-export ZSH="/Users/hernamesbarbara/.oh-my-zsh"
+export ZSH=~/.oh-my-zsh
 
+# echo $(setopt)
+# echo 
 
-
-echo $(setopt)
-echo 
-
-setopt GLOB_COMPLETE
-setopt AUTO_CD
+# setopt GLOB_COMPLETE
+# setopt AUTO_CD
 
 ####################################
 # HISTORY STUFF
