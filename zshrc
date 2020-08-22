@@ -39,8 +39,8 @@ autoload o
 
 ####################################
 
-PROMPT="%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# "
-export PS1="%10F%m%f:%11F%1~%f $ "
+# PROMPT="%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# "
+# export PS1="%10F%m%f:%11F%1~%f $ "
 
 ####################################
 ## COMPLETION
