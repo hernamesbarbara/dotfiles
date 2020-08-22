@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# -*- coding: utf-8 -*-
+
 # Call from a local repo to open the repository on github in browser
 function github() {
  giturl=$(git config --get remote.origin.url)

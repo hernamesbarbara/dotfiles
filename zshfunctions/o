@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+# -*- coding: utf-8 -*-
+
+function o() {
+    if [[ -z "$@" ]]; then
+        open .
+    else
+        open "$1"
+    fi
+}

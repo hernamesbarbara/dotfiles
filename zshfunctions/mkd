@@ -1,2 +1,5 @@
+#!/usr/bin/env zsh
+# -*- coding: utf-8 -*-
+
 # make new directory and cd into it
 function mkd () { mkdir -p "$@" && cd "$@"; }

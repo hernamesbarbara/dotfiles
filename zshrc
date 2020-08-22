@@ -1,11 +1,5 @@
 export ZSH=~/.oh-my-zsh
 
-# echo $(setopt)
-# echo 
-
-# setopt GLOB_COMPLETE
-# setopt AUTO_CD
-
 ####################################
 # HISTORY STUFF
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
@@ -36,28 +30,30 @@ fpath+=~/.zshfunctions
 
 # then tell zsh to load each function 
 # within that file into memory by default
-autoload last_cmd_status
+autoload cwd
 autoload github
-autoload mkd
+autoload last_cmd_status
 autoload lh
+autoload mkd
+autoload o
 
 ####################################
 
-PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
-
+PROMPT="%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# "
+export PS1="%10F%m%f:%11F%1~%f $ "
 
 ####################################
 ## COMPLETION
-autoload -Uz compinit && compinit
+# autoload -Uz compinit && compinit
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 # load bashcompinit for some old bash completions
 # you'll need this file saved here `/usr/local/etc/bash_completion.d`
 # https://github.com/Honestpuck/autopkg_complete/blob/master/autopkg
-autoload bashcompinit
-bashcompinit
-source /usr/local/etc/bash_completion.d/*
+# autoload bashcompinit
+# bashcompinit
+# source /usr/local/etc/bash_completion.d/*
 ####################################
 
 export TERM="xterm-256color"
@@ -71,5 +67,6 @@ plugins=(git zsh-z)
 source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:~/bin"
+
 
 
