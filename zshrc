@@ -5,8 +5,8 @@ export ZSH=~/.oh-my-zsh
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HIST_STAMPS="yyyy-mm-dd"
 setopt EXTENDED_HISTORY
-SAVEHIST=10000
-HISTSIZE=10000
+SAVEHIST=5000
+HISTSIZE=5000
 # share history across multiple zsh sessions
 setopt SHARE_HISTORY
 # append to history
@@ -46,7 +46,7 @@ autoload o
 ## COMPLETION
 # autoload -Uz compinit && compinit
 # case insensitive path-completion
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+# zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 # load bashcompinit for some old bash completions
 # you'll need this file saved here `/usr/local/etc/bash_completion.d`
@@ -68,5 +68,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:~/bin"
 
-
+if [[ -x ~/.greetoftheday ]]; then
+     ~/.greetoftheday
+fi
 
