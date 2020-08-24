@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# -*- coding: utf-8 -*-
+
 export ZSH=~/.oh-my-zsh
 
 ####################################
@@ -65,6 +68,7 @@ ZSH_THEME="robbyrussell"
 plugins=(git zsh-z)
 
 source $ZSH/oh-my-zsh.sh
+source /usr/local/etc/bash_completion.d/*
 
 export PATH="$PATH:~/bin"
 
