@@ -3,6 +3,10 @@
 
 export ZSH=~/.oh-my-zsh
 
+
+# https://sgeb.io/posts/2016/11/til-bash-zsh-half-typed-commands/
+bindkey '^q' push-line-or-edit
+
 ####################################
 # HISTORY STUFF
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
@@ -70,9 +74,14 @@ plugins=(git zsh-z)
 source $ZSH/oh-my-zsh.sh
 source /usr/local/etc/bash_completion.d/*
 
+
+export PATH=$PATH:/usr/local/lib/ruby/gems/2.7.0/gems/t-3.1.0/bin
 export PATH="$PATH:~/bin"
 
 if [[ -x ~/.greetoftheday ]]; then
      ~/.greetoftheday
 fi
+
+# export PROMPT="%(?:%{%}➜ :%{%}➜ ) %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"export PATH="/usr/local/opt/ruby/bin:$PATH"
+
 
