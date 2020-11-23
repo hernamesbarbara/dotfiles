@@ -66,6 +66,8 @@ echo "export PS1="%10F%m%f:%11F%1~%f \$ "" >> ~/.zshrc
 
 ```
 
+# install this stuff
+
 brew install git
 brew install coreutils
 brew install python3
@@ -74,7 +76,3 @@ brew install node
 brew install lolcat cowsay fortune
 
 ```
-
-`./symlinkall.sh` will print out the `ln -s` statements.
-
-
