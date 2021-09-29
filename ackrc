@@ -37,7 +37,9 @@
 --ignore-dir=node_modules/
 
 # allow searching all data related files
---type-set=data=.txt,.csv,.tsv,.json,.jsonl,.xml,.dat,.data
+--type-set=data=.txt,.csv,.tsv,.json,.jsonl,.xml,.dat,.data,.xlsx,.xls,.xlsm
+
+--type-set=excel=.xls,.xlsx,.xlsm
 
 # allow searching txt files
 --type-set=csv=.txt,.csv,.tsv

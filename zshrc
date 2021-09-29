@@ -69,7 +69,7 @@ export TERM="xterm-256color"
 # ZSH_THEME="avit"
 ZSH_THEME="robbyrussell"
 
-plugins=(git zsh-z)
+plugins=(git zsh-z jsontools)
 
 source $ZSH/oh-my-zsh.sh
 source /usr/local/etc/bash_completion.d/*
