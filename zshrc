@@ -75,7 +75,9 @@ source /usr/local/etc/bash_completion.d/*
 
 export PATH="$PATH:/usr/local/lib/ruby/gems/2.7.0/bin"
 
-export PATH=$PATH:$(which python3)
+export PATH="$PATH:$(brew --prefix)/opt/python3/libexec/bin"
+
+export PATH="$PATH:$(which python3)"
 
 export PATH="$PATH":~/bin
 
