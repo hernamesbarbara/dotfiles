@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
 
+export PATH=/opt/homebrew/bin:$PATH
+
 export ZSH=~/.oh-my-zsh
 
 # https://sgeb.io/posts/2016/11/til-bash-zsh-half-typed-commands/
@@ -11,8 +13,8 @@ bindkey '^q' push-line-or-edit
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 HIST_STAMPS="yyyy-mm-dd"
 setopt EXTENDED_HISTORY
-SAVEHIST=5000
-HISTSIZE=5000
+SAVEHIST=10000
+HISTSIZE=10000
 # share history across multiple zsh sessions
 setopt SHARE_HISTORY
 # append to history
@@ -71,7 +73,8 @@ ZSH_THEME="robbyrussell"
 plugins=(git zsh-z jsontools)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/local/etc/bash_completion.d/*
+
+# source /usr/local/etc/bash_completion.d/*
 
 export PATH="$PATH:/usr/local/lib/ruby/gems/2.7.0/bin"
 
@@ -85,9 +88,3 @@ export PATH="$PATH":~/bin
 if [[ -x ~/.greetoftheday ]]; then
      ~/.greetoftheday
 fi
-
-# export PROMPT="%(?:%{%}➜ :%{%}➜ ) %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-
-
-# alias python=/usr/bin/python3

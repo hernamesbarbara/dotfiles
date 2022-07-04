@@ -107,4 +107,3 @@ HEROKU_AC_BASH_SETUP_PATH=~/Library/Caches/heroku/autocomplete/bash_setup && tes
 export DISPLAY=:0
 
 source $HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br
-
