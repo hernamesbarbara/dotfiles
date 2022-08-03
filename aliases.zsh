@@ -11,3 +11,7 @@ alias rmpyc="find . -name '*.pyc' -type f -delete"
 alias ccat="pygmentize -O style=solarized-dark -f console256 -g"
 
 alias today='printf "$(date "+%Y-%m-%d")"'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 186c42927a634adc45663d5ee19cead4b4396f3c
