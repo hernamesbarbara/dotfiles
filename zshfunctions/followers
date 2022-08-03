@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+
+function followers() {
+    SCREEN_NAME=`t whoami | grep Name | cut -d',' -f1 | cut -d'e' -f2`
+    SCREEN_NAME=`echo "$SCREEN_NAME" | xargs`
+    N_FOLLOWERS=`t whoami | grep Followers | cut -d " " -f2-10`
+    TEXT="$SCREEN_NAME has "$N_FOLLOWERS" followers"
+    if [ "$SCREEN_NAME" = "Yhat" ]
+        then
+            SCREEN_NAME="why-hat"
+    fi
+    MSG="$SCREEN_NAME has "$N_FOLLOWERS" followers"
+    echo $TEXT
+    say $MSG
+}

@@ -88,3 +88,5 @@ export PATH="$PATH":~/bin
 if [[ -x ~/.greetoftheday ]]; then
      ~/.greetoftheday
 fi
+
+source ~/.aliases.zsh

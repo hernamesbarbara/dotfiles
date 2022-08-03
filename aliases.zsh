@@ -10,3 +10,5 @@ alias chrome="open -a Google\ Chrome"
 alias rmpyc="find . -name '*.pyc' -type f -delete"
 alias ccat="pygmentize -O style=solarized-dark -f console256 -g"
 
+alias today='printf "$(date "+%Y-%m-%d")"'
+
