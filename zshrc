@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
 
-export PATH=/opt/homebrew/bin:$PATH
+export PATH="$(brew --prefix)/bin:$PATH"
 
 export ZSH=~/.oh-my-zsh
 
@@ -53,6 +53,7 @@ autoload o
 ####################################
 ## COMPLETION
 # autoload -Uz compinit && compinit
+autoload -U compinit && compinit
 # case insensitive path-completion
 # zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
@@ -70,13 +71,18 @@ export TERM="xterm-256color"
 # ZSH_THEME="avit"
 ZSH_THEME="robbyrussell"
 
-plugins=(git zsh-z jsontools)
+plugins=(git z jsontools isodate)
+
+zstyle ':completion:*' menu select
 
 source $ZSH/oh-my-zsh.sh
 
 # source /usr/local/etc/bash_completion.d/*
 
-export PATH="$PATH:/usr/local/lib/ruby/gems/2.7.0/bin"
+# export PATH="$PATH:/usr/local/lib/ruby/gems/2.7.0/bin"
+export PATH="$PATH:$(brew --prefix)/opt/ruby/bin"
+export PATH="$PATH:$(brew --prefix)/lib/ruby/gems/3.2.0/bin"
+
 
 export PATH="$PATH:$(brew --prefix)/opt/python3/libexec/bin"
 
