@@ -44,6 +44,7 @@ autoload last_cmd_status
 autoload lh
 autoload mkd
 autoload o
+autoload zmv
 
 ####################################
 
@@ -96,3 +97,6 @@ if [[ -x ~/.greetoftheday ]]; then
 fi
 
 source ~/.aliases.zsh
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
