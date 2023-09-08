@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+  echo "No URL provided."
+  return 1
+fi
+
+url_out="${1%%\?*}"
+
+echo -n "$url_out"

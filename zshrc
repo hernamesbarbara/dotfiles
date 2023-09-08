@@ -45,6 +45,7 @@ autoload lh
 autoload mkd
 autoload o
 autoload zmv
+autoload url_clean
 
 ####################################
 
