@@ -10,25 +10,41 @@ bindkey '^q' push-line-or-edit
 
 ####################################
 # HISTORY STUFF
-HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
-HIST_STAMPS="yyyy-mm-dd"
-setopt EXTENDED_HISTORY
-SAVEHIST=10000
-HISTSIZE=10000
+
+# Larger history (allow 32³ entries vs. default 500)
+export SAVEHIST=50000000;
+export HISTSIZE=50000000;
+export HISTFILESIZE=$HISTSIZE;
+
+
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history;
+HIST_STAMPS="yyyy-mm-dd";
+
+# Make some commands not show up in history
+export HISTCONTROL=ignoreboth;
+setopt EXTENDED_HISTORY;
+
+# Prefer US English and use UTF-8
+export LANG="en_US.UTF-8";
+export LC_ALL="en_US.UTF-8";
+
+# Don't clear the screen after quitting a manual page
+export MANPAGER="less -X";
+
 # share history across multiple zsh sessions
-setopt SHARE_HISTORY
+setopt SHARE_HISTORY;
 # append to history
-setopt APPEND_HISTORY
+setopt APPEND_HISTORY;
 # adds commands as they are typed, not at shell exit
-setopt INC_APPEND_HISTORY
+setopt INC_APPEND_HISTORY;
 # expire duplicates first
-setopt HIST_EXPIRE_DUPS_FIRST 
+setopt HIST_EXPIRE_DUPS_FIRST ;
 # do not store duplications
-setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_DUPS;
 #ignore duplicates when searching
-setopt HIST_FIND_NO_DUPS
+setopt HIST_FIND_NO_DUPS;
 # removes blank lines from history
-setopt HIST_REDUCE_BLANKS
+setopt HIST_REDUCE_BLANKS;
 
 ####################################
 # FUNCTIONS
@@ -98,6 +114,3 @@ if [[ -x ~/.greetoftheday ]]; then
 fi
 
 source ~/.aliases.zsh
-
-# Load Angular CLI autocompletion.
-# source <(ng completion script)
