@@ -1,16 +1,20 @@
 #!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
 
+# function cwd() {
+#     if [ "$1" != "" ]
+#         then
+#             P=$(greadlink "$1" -f --no-newline)
+#         else
+#             P=$(greadlink "." -f --no-newline)
+#     fi
+#     P=$(echo -e "$P" | sed -e "s/\/Users\/$(whoami)/~/g")
+#     P=$(echo -e "$P" | sed 's/ /\\ /g')
+#     P=$(echo -e "$P" | sed 's/(/\\(/g')
+#     P=$(echo -e "$P" | sed 's/)/\\)/g')
+#     echo -e "$P" | tr -d '\r\n' | pbcopy
+# }
+
 function cwd() {
-    if [ "$1" != "" ]
-        then
-            P=$(greadlink "$1" -f --no-newline)
-        else
-            P=$(greadlink "." -f --no-newline)
-    fi
-    P=$(echo -e "$P" | sed -e "s/\/Users\/$(whoami)/~/g")
-    P=$(echo -e "$P" | sed 's/ /\\ /g')
-    P=$(echo -e "$P" | sed 's/(/\\(/g')
-    P=$(echo -e "$P" | sed 's/)/\\)/g')
-    echo -e "$P" | tr -d '\r\n' | pbcopy
+    print -P %~ | tr -d '\r\n' | pbcopy
 }
