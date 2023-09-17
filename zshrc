@@ -57,11 +57,12 @@ fpath+=~/.zshfunctions
 autoload cwd
 autoload github
 autoload last_cmd_status
-autoload lh
 autoload mkd
 autoload o
+autoload c
 autoload zmv
 autoload url_clean
+autoload lh
 
 ####################################
 

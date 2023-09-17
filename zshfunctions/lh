@@ -1,5 +1,9 @@
-#!/usr/bin/env zsh
-# -*- coding: utf-8 -*-
+#!/usr/bin/env bash
 
-# show ONLY hidden files + directories
-function lh() { ls -ld .?*  --block-size=MB "$@"; }    # list hidden files only
+function lh() {
+    if [[ -z "$@" ]]; then
+        ls -ld .??*;
+    else
+        ls -ld "${1}/".??*;
+    fi
+};

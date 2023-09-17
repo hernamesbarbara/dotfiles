@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+c() {
+	if [ $# -eq 0 ]; then
+		code .
+	else
+		code "$@"
+	fi
+}
