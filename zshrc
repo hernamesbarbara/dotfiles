@@ -109,7 +109,7 @@ export PATH="$PATH:$(which python3)"
 
 export PATH="$PATH":~/bin
 
-export PATH="${PATH}:$(brew --prefix)/opt/postgresql@15/bin"
+# export PATH="${PATH}:$(brew --prefix)/opt/postgresql@15/bin"
 
 
 if [[ -x ~/.greetoftheday ]]; then

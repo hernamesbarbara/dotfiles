@@ -75,35 +75,18 @@ export BROWSER=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 # rvm shit
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-export PGHOST=localhost
-export PGDATA=/usr/local/var/postgres
+# export PGHOST=localhost
+# export PGDATA=/usr/local/var/postgres
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-if [[ -x "$(which thefuck)" ]]; then
-     eval "$(thefuck --alias)"
-fi
-
-source ~/.greetoftheday
 export PATH=$PATH
-
-# added by travis gem
-[ -f /Users/hernamesbarbara/.travis/travis.sh ] && source /Users/hernamesbarbara/.travis/travis.sh
 
 # use sublime text as editor
 if [[ -x "$(which code)" ]]; then
      export EDITOR="$(which code)"
 fi
 
-# go path enables you to use `go get`
-export GOPATH=$HOME/.go
-export PATH=$PATH:$GOPATH/bin
 
-# heroku autocomplete setup
-HEROKU_AC_BASH_SETUP_PATH=~/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
-
-export DISPLAY=:0
-
-source $HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br
