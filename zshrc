@@ -65,27 +65,14 @@ autoload url_clean
 autoload lh
 
 ####################################
-
-# PROMPT="%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# "
-# export PS1="%10F%m%f:%11F%1~%f $ "
-
+source ~/.config/zsh/set_pycache_prefix.zsh
 ####################################
 ## COMPLETION
 # autoload -Uz compinit && compinit
 autoload -U compinit && compinit
-# case insensitive path-completion
-# zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-
-# load bashcompinit for some old bash completions
-# you'll need this file saved here `/usr/local/etc/bash_completion.d`
-# https://github.com/Honestpuck/autopkg_complete/blob/master/autopkg
-# autoload bashcompinit
-# bashcompinit
-# source /usr/local/etc/bash_completion.d/*
 ####################################
 
 export TERM="xterm-256color"
-
 
 # ZSH_THEME="avit"
 ZSH_THEME="robbyrussell"
