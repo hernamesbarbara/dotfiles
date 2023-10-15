@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+wifi_qr_code() {
+    local ssid=""
+    local password=""
+    local qr_output=""
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -*)
+                echo "Usage: wifi_qr_code <SSID> <PSWD> [--output=OUTPUT_FILENAME]"
+                return 1
+                ;;
+            *)
+                if [[ -z "$ssid" ]]; then
+                    ssid="$1"
+                elif [[ -z "$password" ]]; then
+                    password="$1"
+                elif [[ -z "$qr_output" ]]; then
+                    qr_output="$1"
+                else
+                    echo "Usage: wifi_qr_code <SSID> <PSWD> [--output=OUTPUT_FILENAME]"
+                    return 1
+                fi
+                shift
+                ;;
+        esac
+    done
+
+    if command -v qrencode &> /dev/null; then
+        if [[ -z "$ssid" || -z "$password" ]]; then
+            echo "Usage: wifi_qr_code <SSID> <PSWD> [--output=OUTPUT_FILENAME]"
+            return 1
+        fi
+
+        if [[ -z "$qr_output" ]]; then
+            qr_output="${ssid}_wifi.png"
+        fi
+
+        local wifi_config="WIFI:T:WPA;S:$ssid;P:$password;;"
+
+        # Use "history -d" to remove the last command from history
+        history -d $(($HISTCMD - 1))
+
+        qrencode -s 6 -l H -o "$qr_output" "$wifi_config"
+
+        echo "Wi-Fi QR code generated and saved as $qr_output"
+    else
+        echo "qrencode is not installed. Please install it."
+    fi
+}
