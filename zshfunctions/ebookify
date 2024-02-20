@@ -1,0 +1,23 @@
+ebookify() {
+  if [[ $# -ne 2 ]]; then
+    echo "Usage: ebookify <input_pdf> <output_pdf>"
+    return 1
+  fi
+
+  local input_pdf="$1"
+  local output_pdf="$2"
+
+  gs -sDEVICE=pdfwrite \
+     -dCompatibilityLevel=1.4 \
+     -dPDFSETTINGS=/ebook \
+     -dNOPAUSE -dQUIET -dBATCH \
+     -sOutputFile="${output_pdf}" \
+     "${input_pdf}"
+
+  if [[ $? -eq 0 ]]; then
+    echo "PDF successfully processed: ${output_pdf}"
+  else
+    echo "Error processing PDF"
+    return 1
+  fi
+}
