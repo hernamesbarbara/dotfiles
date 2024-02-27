@@ -62,6 +62,7 @@ autoload o
 autoload c
 autoload zmv
 autoload url_clean
+autoload url_humanize
 autoload lh
 autoload wifi_qr_code
 autoload ebookify

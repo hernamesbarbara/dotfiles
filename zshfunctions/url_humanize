@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+url_humanize() {
+    local input_url="${1//\\/}" # Preprocess to remove backslashes
+
+    # Define constants for pattern matching
+    local RG_REDIRECT_PARAM='url='
+
+    # Initial checks and variable setup
+    local kind="unknown"
+    local redirect_url=""
+
+    # Check for the presence of a URL redirection parameter
+    if [[ "$input_url" == *"$RG_REDIRECT_PARAM"* ]]; then
+        kind="affiliate url"
+        # Extract and decode the redirect URL component
+        redirect_url=$(echo "$input_url" | sed -e "s/^.*${RG_REDIRECT_PARAM}//" -e "s/%3A/:/g" -e "s/%2F/\//g" -e "s/%2E/./g" -e "s/%2D/-/g" -e "s/%3F/?/g" -e "s/%3D/=/g")
+    fi
+
+    # Generate JSON output, ensuring special characters are escaped correctly
+    printf '{"input_url": "%s", "kind": "%s", "redirect_url": "%s"}\n' \
+        "$(echo "$input_url" | sed 's/"/\\"/g')" "$kind" "$(echo "$redirect_url" | sed 's/"/\\"/g')"
+}
