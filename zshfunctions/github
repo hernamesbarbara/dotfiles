@@ -1,15 +1,19 @@
-#!/usr/bin/env zsh
-# -*- coding: utf-8 -*-
-
-# Call from a local repo to open the repository on github in browser
-function github() {
- giturl=$(git config --get remote.origin.url)
- if [ -z "$giturl" ]
-    then
-        echo "Not a git repository or no remote.origin.url set";
+github () {
+    giturl=$(git config --get remote.origin.url)
+    if [ -z "$giturl" ]; then
+        echo "Not a git repository or no remote.origin.url set"
     else
-        giturl=${giturl/git\@github\.com\:/https://github.com/}
-        giturl=${giturl/\.git//}
+        # Transform SSH URL to HTTPS URL for repositories
+        if [[ "$giturl" == git@github.com:* ]]; then
+            giturl=${giturl/git@github.com:/https://github.com/}
+            giturl=${giturl/.git/}
+        # Transform SSH URL to HTTPS URL for gists
+        elif [[ "$giturl" == git@gist.github.com:* ]]; then
+            # Extract the gist ID from the URL
+            gistid=$(echo $giturl | sed 's/.*://;s/.git//')
+            # Construct the correct gist URL
+            giturl="https://gist.github.com/$gistid"
+        fi
         echo $giturl
         open $giturl
     fi

@@ -89,13 +89,17 @@ source $ZSH/oh-my-zsh.sh
 # source /usr/local/etc/bash_completion.d/*
 
 # export PATH="$PATH:/usr/local/lib/ruby/gems/2.7.0/bin"
+
+export PATH="/opt/homebrew/bin:$PATH"
+
+export PATH="$HOME/Library/Python/3.9/bin:$PATH"
+export PATH="$HOME/Library/Python/3.11/bin:$PATH"
+
 export PATH="$PATH:$(brew --prefix)/opt/ruby/bin"
 export PATH="$PATH:$(brew --prefix)/lib/ruby/gems/3.2.0/bin"
 
+export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
 
-export PATH="$PATH:$(brew --prefix)/opt/python3/libexec/bin"
-
-export PATH="$PATH:$(which python3)"
 
 export PATH="$PATH":~/bin
 
@@ -109,3 +113,5 @@ if [[ -x ~/.greetoftheday ]]; then
 fi
 
 source ~/.aliases.zsh
+# Created by `pipx` on 2024-03-06 19:58:06
+export PATH="$PATH:/Users/hernamesbarbara/.local/bin"

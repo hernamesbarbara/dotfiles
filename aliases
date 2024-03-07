@@ -1,43 +1,5 @@
 #!/usr/bin/env bash
 
-is_valid_command () {
-    : '
-    Use 1st arg for command substitution. concat 1..n args together
-        is_valid_command "ls --color -F --quote-name" => splits into `ls` + `--color...`
-    '
-    i=0
-    param_str=""
-    for word in $(echo "$@"); do
-        if [ $i -eq 0 ] ; then
-            cmd_str="$word"
-        else
-            param_str="$param_str $word"
-        fi
-        i=$[i +1]
-    done
-    type $cmd_str &> /dev/null &&
-        eval $(echo "$cmd_str $param_str") &> /dev/null
-        # debug with `echo "$?"`
-}
-
-# copy working directory
-# or pass filename to get the path to that file
-# replace your username with tilde ~/
-# on OS X you can install `greadlink` via: `brew install coreutils`
-# function cwd() {
-#     if [ "$1" != "" ]
-#         then
-#             P=$(greadlink "$1" -f --no-newline)
-#         else
-#             P=$(greadlink "." -f --no-newline)
-#     fi
-#     P=$(echo -e "$P" | sed -e "s/\/Users\/$(whoami)/~/g")
-#     P=$(echo -e "$P" | sed 's/ /\\ /g')
-#     P=$(echo -e "$P" | sed 's/(/\\(/g')
-#     P=$(echo -e "$P" | sed 's/)/\\)/g')
-#     echo -e "$P" | tr -d '\r\n' | pbcopy
-# }
-
 # run a simple HTTP server w/ single command
 server () {
     if [ "$1" != "" ]
@@ -156,20 +118,6 @@ function followers() {
     MSG="$SCREEN_NAME has "$N_FOLLOWERS" followers"
     echo $TEXT
     say $MSG
-}
-
-# Call from a local repo to open the repository on github in browser
-function github() {
- giturl=$(git config --get remote.origin.url)
- if [ -z "$giturl" ]
-    then
-        echo "Not a git repository or no remote.origin.url set";
-    else
-        giturl=${giturl/git\@github\.com\:/https://github.com/}
-        giturl=${giturl/\.git//}
-        echo $giturl
-        open $giturl
-    fi
 }
 
 # Enter the matrix
