@@ -103,7 +103,7 @@ fi
 
 
 # List all files colorized in long format, including dot files
-alias la="ls -lha --block-size=MB"
+# alias la="ls -lha --block-size=MB"
 
 
 function followers() {
@@ -164,5 +164,3 @@ function log_msg {
         echo "$@"
     fi
 }
-
-

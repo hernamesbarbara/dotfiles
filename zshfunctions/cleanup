@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+cleanup() {
+    # delete files with these extensions
+    local patterns=('.pyc' '.DS_Store' '__MACOSX')
+
+    for pattern in $patterns; do
+        echo "Searching for and deleting files matching $pattern"
+        # Use find to search for files matching the pattern and delete them
+        find . -name "$pattern" -exec rm -rf {} +
+    done
+
+    echo "Cleanup completed."
+}

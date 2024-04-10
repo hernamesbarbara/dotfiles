@@ -66,6 +66,7 @@ autoload url_humanize
 autoload lh
 autoload wifi_qr_code
 autoload ebookify
+autoload cleanup
 
 ####################################
 source ~/.config/zsh/set_pycache_prefix.zsh
@@ -106,12 +107,13 @@ export PATH="$PATH":~/bin
 # export PATH="${PATH}:$(brew --prefix)/opt/postgresql@15/bin"
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
-
+source ~/.apple-secrets.sh
 
 if [[ -x ~/.greetoftheday ]]; then
      ~/.greetoftheday
 fi
 
 source ~/.aliases.zsh
+
 # Created by `pipx` on 2024-03-06 19:58:06
 export PATH="$PATH:/Users/hernamesbarbara/.local/bin"
