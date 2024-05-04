@@ -107,7 +107,8 @@ export PATH="$PATH":~/bin
 # export PATH="${PATH}:$(brew --prefix)/opt/postgresql@15/bin"
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
-source ~/.apple-secrets.sh
+[ -f ~/.env_private ] && source ~/.env_private
+
 
 if [[ -x ~/.greetoftheday ]]; then
      ~/.greetoftheday
