@@ -28,15 +28,27 @@ OUTFILE="${IN_DIR_FULLPATH}/${TODAY} - ${IN_DIRNAME}.pdf"
 TMPDIR=$(mktemp -d)
 trap 'rm -rf "$TMPDIR"' EXIT
 
-# Check for .png files
-shopt -s nullglob
-FILES=("$1"/*.png)
+# Check for more .png or .jpg/.jpeg files
+PNG_COUNT=$(find "$1" -type f -iname "*.png" | wc -l)
+JPG_COUNT=$(find "$1" -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) | wc -l)
+
+# Decide which file type to use
+if [ "$PNG_COUNT" -ge "$JPG_COUNT" ]; then
+    FILES=("$1"/*.png)
+    FILE_TYPE="PNG"
+else
+    # Use 'find' to include both .jpg and .jpeg files and store them in FILES array
+    FILES=($(find "$1" -type f \( -iname "*.jpg" -o -iname "*.jpeg" \)))
+    FILE_TYPE="JPG"
+fi
+
+# Check if any files were found in the FILES array
 if [ ${#FILES[@]} -eq 0 ]; then
-    echo "Error: No PNG files found in $1."
+    echo "Error: No $FILE_TYPE files found in $1."
     exit 1
 fi
 
-# Convert each .png to .pdf and save it in the temporary directory
+# Convert each selected image file to .pdf and save in the temporary directory
 for F in "${FILES[@]}"; do
     BASENAME=$(basename "$F")
     convert "$F" "${TMPDIR}/${BASENAME}.pdf"

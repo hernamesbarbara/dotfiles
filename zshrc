@@ -101,6 +101,7 @@ export PATH="$PATH:$(brew --prefix)/lib/ruby/gems/3.2.0/bin"
 
 export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
 
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
 
 export PATH="$PATH":~/bin
 
