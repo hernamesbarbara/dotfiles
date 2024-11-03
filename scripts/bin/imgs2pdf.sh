@@ -22,6 +22,7 @@ fi
 
 IN_DIRNAME="$(basename "$1")"
 TODAY="$(date "+%Y-%m-%d")"
+UNOPTIMIZED_OUTFILE="${IN_DIR_FULLPATH}/${TODAY} - ${IN_DIRNAME}_unoptimized.pdf"
 OUTFILE="${IN_DIR_FULLPATH}/${TODAY} - ${IN_DIRNAME}.pdf"
 
 # Create a temporary directory for the individual .pdf files
@@ -55,11 +56,9 @@ for F in "${FILES[@]}"; do
 done
 
 # Merge all the .pdf files into a single .pdf file
-pdfunite "${TMPDIR}"/*.pdf "$OUTFILE"
+pdfunite "${TMPDIR}"/*.pdf "$UNOPTIMIZED_OUTFILE"
 
 # Optimize PDF using Ghostscript
-OPTIMIZED_OUTFILE="${IN_DIR_FULLPATH}/${TODAY} - ${IN_DIRNAME}_optimized.pdf"
-
 gs \
     -sDEVICE=pdfwrite \
     -dCompatibilityLevel=1.4 \
@@ -67,7 +66,8 @@ gs \
     -dNOPAUSE \
     -dQUIET \
     -dBATCH \
-    -sOutputFile="$OPTIMIZED_OUTFILE" \
-    "$OUTFILE"
+    -sOutputFile="$OUTFILE" \
+    "$UNOPTIMIZED_OUTFILE"
 
-echo "Saved optimized PDF as ${OPTIMIZED_OUTFILE}"
+echo "Saved unoptimized PDF as ${UNOPTIMIZED_OUTFILE}"
+echo "Saved optimized PDF as ${OUTFILE}"
