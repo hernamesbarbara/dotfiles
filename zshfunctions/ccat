@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+ccat() {
+    if ! command -v highlight &> /dev/null; then
+        echo "highlight is not installed. Please run 'brew install highlight' to install it."
+        return 1
+    fi
+
+    # Call highlight with the provided arguments
+    highlight "$@"
+}

@@ -67,6 +67,7 @@ autoload lh
 autoload wifi_qr_code
 autoload ebookify
 autoload cleanup
+autoload ccat
 
 ####################################
 source ~/.config/zsh/set_pycache_prefix.zsh
