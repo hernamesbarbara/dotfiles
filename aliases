@@ -64,9 +64,6 @@ function last_cmd_status () {
 fi
 }
 
-alias excel="open -a Microsoft\ Excel"
-alias chrome="open -a Google\ Chrome"
-
 # screen helpers
 alias s='screen -ls'
 alias sr='screen -rd'

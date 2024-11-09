@@ -6,6 +6,7 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias excel="open -a Microsoft\ Excel"
 alias chrome="open -a Google\ Chrome"
+alias brave="open -a Brave\ Browser"
 alias rmpyc="find . -name '*.pyc' -type f -delete"
 
 alias today='printf "$(date "+%Y-%m-%d")"'
