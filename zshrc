@@ -120,3 +120,5 @@ source ~/.aliases.zsh
 
 # Created by `pipx` on 2024-03-06 19:58:06
 export PATH="$PATH:/Users/hernamesbarbara/.local/bin"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
