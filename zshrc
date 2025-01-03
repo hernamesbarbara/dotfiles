@@ -64,6 +64,7 @@ autoload zmv
 autoload url_clean
 autoload url_humanize
 autoload lh
+autoload lsd
 autoload wifi_qr_code
 autoload ebookify
 autoload cleanup

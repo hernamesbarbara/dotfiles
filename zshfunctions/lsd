@@ -1,0 +1,11 @@
+lsd() {
+  # Default to the current directory if no argument is provided
+  local dir="${1:-.}"
+  
+  # Execute the command to list subdirectories by last modified date
+  find "$dir"/* -type d -exec bash -c '
+    for subdir; do
+      echo "$(stat -f "%m" "$subdir") $subdir";
+    done
+  ' _ {} + | sort -rn | awk '{$1=""; print $0}' | sed 's/^ *//'
+}
