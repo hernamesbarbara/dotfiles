@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+g_ignore() {
+    local ignore_items=(Python VisualStudioCode VirtualEnv Images Node macOS MicrosoftOffice Dropbox)
+
+    echo "Generating a .gitignore file for ${ignore_items[*]}"
+
+    gibo dump "${ignore_items[@]}"
+}
