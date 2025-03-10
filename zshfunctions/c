@@ -1,8 +1,25 @@
 #!/usr/bin/env bash
+# ~/.zshfunctions/c
+_is_running() {
+    local app_name="$1"
+    
+    if pgrep -x "$app_name" > /dev/null; then
+        return 0  # True
+    else
+        return 1  # False
+    fi
+}
+
 c() {
-	if [ $# -eq 0 ]; then
-		code .
-	else
-		code "$@"
-	fi
+    local editor="code"  # Default to VSCode
+    
+    if _is_running "Cursor"; then
+        editor="cursor"
+    fi
+
+    if [ $# -eq 0 ]; then
+        "$editor" .
+    else
+        "$editor" "$@"
+    fi
 }
