@@ -5,8 +5,52 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 export ZSH=~/.oh-my-zsh
 
-# Keybindings
-bindkey '^q' push-line-or-edit
+export EDITOR='code --wait'
+# export VISUAL="$EDITOR"
+
+####################################
+# KEYBINDINGS
+####################################
+
+# 1. Delete from cursor to beginning of line
+bindkey "^U" backward-kill-line  
+
+# 2. Swap the last two words before the cursor
+bindkey "^T" transpose-words   
+
+# 3. Incremental history search (Ctrl + R)
+bindkey "^R" history-incremental-search-backward  
+
+# 4. Insert last argument of the previous command (Alt + . cycles through them)
+bindkey "^[." insert-last-word  
+
+# 5. Move left by one word (Alt + B)
+bindkey "^[b" backward-word    
+
+# 6. Move right by one word (Alt + F)
+bindkey "^[f" forward-word     
+
+# 7. Restore the command line to its original state before editing (Ctrl + G)
+bindkey "^G" send-break        
+
+# 8. Open the current command in your text editor (Ctrl + X, then Ctrl + E)
+bindkey "^X^E" vi-editing-mode  
+
+# 9. Delete the previous word instead of just a single character (Ctrl + W)
+bindkey "^W" backward-kill-word  
+
+# 10. Expand history commands and variables before execution (Ctrl + X, then Ctrl + V)
+bindkey "^X^V" expand-history  
+
+# 11. Push the current line to a temp stack, clear the prompt, and recall it later (Ctrl + Q)
+bindkey "^Q" push-line-or-edit  
+
+# 12. Automatically correct mistyped command names (e.g., 'gti' → 'git')
+setopt correct  
+
+# 13. Enable auto-lowercasing of directory/file paths (even if typed in uppercase)
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 
 ####################################
 # HISTORY SETTINGS
@@ -80,3 +124,9 @@ if [[ -x ~/.greetoftheday ]]; then
 fi
 
 source ~/.aliases.zsh
+
+####################################
+# SYNTAX HIGHLIGHTING
+if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
