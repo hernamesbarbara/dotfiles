@@ -90,10 +90,10 @@ ZSH_COMPDUMP="${ZDOTDIR:-$HOME}/.zcompdump"
 # Use cached completions if available
 if [[ -f $ZSH_COMPDUMP.zwc ]]; then
   compinit -C
-else
-  compinit
-  zcompile $ZSH_COMPDUMP.zwc
+elif compinit; then
+  [[ -f $ZSH_COMPDUMP ]] && zcompile $ZSH_COMPDUMP
 fi
+
 
 ####################################
 # ZSH SETTINGS
