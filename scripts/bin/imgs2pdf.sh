@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # Check for dependencies
-if ! command -v convert &> /dev/null || ! command -v pdfunite &> /dev/null || ! command -v qpdf &> /dev/null; then
-    echo "Error: This script requires 'convert', 'pdfunite', and 'qpdf'. Please install them first."
+if ! command -v magick &> /dev/null || ! command -v pdfunite &> /dev/null || ! command -v qpdf &> /dev/null; then
+    echo "Error: This script requires 'magick', 'pdfunite', and 'qpdf'. Please install them first."
     exit 1
 fi
 
@@ -38,7 +38,6 @@ if [ "$PNG_COUNT" -ge "$JPG_COUNT" ]; then
     FILES=("$1"/*.png)
     FILE_TYPE="PNG"
 else
-    # Use 'find' to include both .jpg and .jpeg files and store them in FILES array
     FILES=($(find "$1" -type f \( -iname "*.jpg" -o -iname "*.jpeg" \)))
     FILE_TYPE="JPG"
 fi
@@ -52,7 +51,7 @@ fi
 # Convert each selected image file to .pdf and save in the temporary directory
 for F in "${FILES[@]}"; do
     BASENAME=$(basename "$F")
-    convert "$F" "${TMPDIR}/${BASENAME}.pdf"
+    magick "$F" "${TMPDIR}/${BASENAME}.pdf"
 done
 
 # Merge all the .pdf files into a single .pdf file
