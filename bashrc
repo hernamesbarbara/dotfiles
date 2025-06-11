@@ -90,3 +90,8 @@ if [[ -x "$(which code)" ]]; then
 fi
 
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/hernamesbarbara/.lmstudio/bin"
+# End of LM Studio CLI section
+

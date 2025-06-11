@@ -65,6 +65,7 @@ setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE    # do not record any line starting with a space
 
 ####################################
 # LOCALE SETTINGS
@@ -130,3 +131,7 @@ source ~/.aliases.zsh
 if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/hernamesbarbara/.lmstudio/bin"
+# End of LM Studio CLI section
