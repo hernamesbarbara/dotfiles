@@ -35,6 +35,8 @@
 
 --ignore-dir=.idea/
 --ignore-dir=node_modules/
+--ignore-dir=site-packages
+--ignore-dir=env
 
 # allow searching all data related files
 --type-set=data=.txt,.csv,.tsv,.json,.jsonl,.xml,.dat,.data,.xlsx,.xls,.xlsm
