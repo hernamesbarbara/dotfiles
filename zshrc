@@ -126,6 +126,9 @@ fi
 
 source ~/.aliases.zsh
 
+[ -f ~/.api_keys ] && source ~/.api_keys
+
+
 ####################################
 # SYNTAX HIGHLIGHTING
 if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
