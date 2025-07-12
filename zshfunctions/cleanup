@@ -3,7 +3,7 @@
 cleanup() {
     # delete files and directories matching these patterns
     local patterns=('.pyc' '.DS_Store' '__MACOSX')
-    local dirs=('__pycache__')
+    local dirs=('__pycache__' '.pytest_cache')
 
     for pattern in "${patterns[@]}"; do
         echo "Searching for and deleting files matching $pattern"
