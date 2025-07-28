@@ -138,3 +138,4 @@ fi
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/hernamesbarbara/.lmstudio/bin"
 # End of LM Studio CLI section
+export PATH="$HOME/.cargo/bin:$PATH"
