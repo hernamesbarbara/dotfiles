@@ -139,3 +139,4 @@ fi
 export PATH="$PATH:/Users/hernamesbarbara/.lmstudio/bin"
 # End of LM Studio CLI section
 export PATH="$HOME/.cargo/bin:$PATH"
+export CLAUDE_INSTALL_METHOD=homebrew

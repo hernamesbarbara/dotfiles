@@ -8,6 +8,7 @@ alias excel="open -a Microsoft\ Excel"
 alias chrome="open -a Google\ Chrome"
 alias brave="open -a Brave\ Browser"
 alias rmpyc="find . -name '*.pyc' -type f -delete"
+alias lt='ls -lthG'
 
 alias ls5="ls -lt --color=always | head -n 5"
 alias ls10="ls -lt --color=always | head -n 10"
