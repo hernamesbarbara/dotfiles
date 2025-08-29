@@ -1,0 +1,54 @@
+#!/usr/bin/env zsh
+#autoload
+# watch_dirs — watch directories (recursively) and/or individual files; print timestamped events.
+#
+# USAGE:
+#   watch_dirs PATH [PATH ...]
+#
+# EXAMPLE:
+#   watch_dirs .swissarmyhammer/issues tests/ cloakpivot/ debug_roundtrip.py debug_cloakmap.py
+
+watch_dirs() {
+  if ! command -v fswatch >/dev/null 2>&1; then
+    print -u2 -- "watch_dirs: fswatch not found. Install with: brew install fswatch"
+    return 127
+  fi
+
+  if (( $# == 0 )); then
+    print -u2 -- "watch_dirs: please provide one or more paths to watch."
+    return 2
+  fi
+
+  # Collect only existing targets; warn on missing
+  local -a targets=()
+  local arg
+  for arg in "$@"; do
+    if [[ -e "$arg" ]]; then
+      targets+=("$arg")
+    else
+      print -u2 -- "watch_dirs: warning: path not found, skipping: $arg"
+    fi
+  done
+
+  if (( ${#targets[@]} == 0 )); then
+    print -u2 -- "watch_dirs: no valid paths to watch."
+    return 2
+  fi
+
+  # Startup summary
+  local ts="$(date "+%Y-%m-%d %H:%M:%S")"
+  print -r -- "$ts watch_dirs: watching ${#targets[@]} target(s) (recursive for directories). Press Ctrl-C to stop."
+  local p
+  for p in "${targets[@]}"; do
+    if [[ -d "$p" ]]; then
+      print -r -- "$ts   [dir]  $p"
+    else
+      print -r -- "$ts   [file] $p"
+    fi
+  done
+
+  # Stream events (NUL-delimited) and print with timestamps.
+  # Use $0 in the zsh -c to safely receive the path argument (handles spaces/newlines).
+  fswatch -0 -r -- "${targets[@]}" | \
+    xargs -0 -n 1 -I '{}' zsh -c 'print -r -- "$(date "+%Y-%m-%d %H:%M:%S") New event: $0"' '{}'
+}
