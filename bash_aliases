@@ -9,6 +9,7 @@ alias h='history '
 # alias la='ls -lha --block-size=MB'
 # alias lh='ls -ld .[!.]* --block-size=MB'
 # alias ll='ls -lh --block-size=MB'
+
 # alias ls='ls -FN --color'
 # alias ls10='lst | head -n 10'
 # alias ls5='lst | head -n 5'
