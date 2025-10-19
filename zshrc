@@ -140,3 +140,11 @@ export PATH="$PATH:/Users/hernamesbarbara/.lmstudio/bin"
 # End of LM Studio CLI section
 export PATH="$HOME/.cargo/bin:$PATH"
 export CLAUDE_INSTALL_METHOD=homebrew
+
+# pnpm
+export PNPM_HOME="/Users/hernamesbarbara/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
