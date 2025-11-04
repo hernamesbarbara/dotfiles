@@ -1,0 +1,180 @@
+#!/usr/bin/env zsh
+# zshfunction: setup_workspace_excludes
+# Usage:
+#   setup_workspace_excludes            # create missing; skip existing
+#   setup_workspace_excludes -u         # also idempotently append to existing .gitignore
+
+function setup_workspace_excludes() {
+  local update_gitignore=false
+  [[ "$1" == "-u" ]] && update_gitignore=true
+
+  local gitignore=".gitignore"
+  local workspace_name="${PWD:t}.code-workspace"
+  local vscode_dir=".vscode"
+  local vscode_settings="${vscode_dir}/settings.json"
+
+  # --- .gitignore content (safe heredoc) ---
+  local IGNORE_CONTENT
+  IGNORE_CONTENT=$(cat <<'GITIGNORE'
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# Project-specific directories
+tmp/
+data/
+spec/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+*.cover
+*.py,cover
+.hypothesis/
+
+# IDEs
+.vscode/
+.idea/
+*.code-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+
+# Distribution / packaging
+*.whl
+GITIGNORE
+)
+
+  # --- Shared VS Code/Cursor settings to exclude noisy paths ---
+  local SETTINGS_JSON
+  SETTINGS_JSON=$(cat <<'JSON'
+{
+  "files.exclude": {
+    "**/.pytest_cache": true,
+    "**/__pycache__": true,
+    "**/venv": true,
+    "**/.venv": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
+    "**/.tox": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/tmp": true
+  },
+  "search.exclude": {
+    "**/.pytest_cache": true,
+    "**/__pycache__": true,
+    "**/venv": true,
+    "**/.venv": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
+    "**/.tox": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/tmp": true
+  },
+  "files.watcherExclude": {
+    "**/.pytest_cache/**": true,
+    "**/__pycache__/**": true,
+    "**/venv/**": true,
+    "**/.venv/**": true,
+    "**/.mypy_cache/**": true,
+    "**/.ruff_cache/**": true,
+    "**/.tox/**": true,
+    "**/build/**": true,
+    "**/dist/**": true,
+    "**/tmp/**": true
+  },
+  "search.useIgnoreFiles": true,
+  "explorer.excludeGitIgnore": true
+}
+JSON
+)
+
+  # --- .gitignore: create or (optionally) update ---
+  if [[ ! -f "$gitignore" ]]; then
+    print -r -- "Creating $gitignore"
+    print -r -- "$IGNORE_CONTENT" > "$gitignore"
+  else
+    print -r -- "Skipping $gitignore (already exists)"
+    if $update_gitignore; then
+      print -r -- "Updating $gitignore (idempotent append)"
+      local IFS=$'\n'
+      for line in ${(f)IGNORE_CONTENT}; do
+        [[ -z "$line" ]] && continue
+        grep -qxF -- "$line" "$gitignore" 2>/dev/null || print -r -- "$line" >> "$gitignore"
+      done
+    fi
+  fi
+
+  # --- .code-workspace: create only if none exist and target missing ---
+  # If any workspace file exists, skip creating another to avoid clutter.
+  local existing_workspaces=(*.code-workspace(N))
+  if (( ${#existing_workspaces} > 0 )); then
+    print -r -- "Skipping workspace (found: ${existing_workspaces:|})"
+  elif [[ ! -f "$workspace_name" ]]; then
+    print -r -- "Creating workspace: $workspace_name"
+    cat > "$workspace_name" <<JSON
+{
+  "folders": [
+    { "path": "." }
+  ],
+  "settings": ${SETTINGS_JSON}
+}
+JSON
+  else
+    print -r -- "Skipping workspace (already exists: $workspace_name)"
+  fi
+
+  # --- .vscode/settings.json: create missing with full settings; skip existing ---
+  if [[ ! -d "$vscode_dir" ]]; then
+    print -r -- "Creating directory: $vscode_dir"
+    mkdir -p "$vscode_dir"
+  fi
+  if [[ ! -f "$vscode_settings" ]]; then
+    print -r -- "Creating $vscode_settings with exclusion settings"
+    print -r -- "$SETTINGS_JSON" > "$vscode_settings"
+  else
+    print -r -- "Skipping $vscode_settings (already exists)"
+  fi
+
+  print -r -- "Done."
+}
