@@ -1,0 +1,14 @@
+# Top N recent entries (keep color in the pipe)
+lsn() {
+  # Usage: lsn [N] [DIR]; default N=10, DIR=current directory
+  local n dir
+  n="${1:-10}"
+
+  if [[ -n "$2" ]]; then
+    dir="$2"
+  else
+    dir="."
+  fi
+
+  gls -lht --group-directories-first --color=always "$dir" | head -n "$n"
+}

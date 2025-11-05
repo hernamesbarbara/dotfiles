@@ -21,13 +21,6 @@ alias la='ls -alh'
 # Sorted by time (newest first), human-readable, dirs first, colored
 alias lt='ls -lht'
 
-# Top N recent entries (keep color in the pipe)
-lsn() {
-  # Usage: lsn [N]; default 10
-  local n="${1:-10}"
-  gls -lht --group-directories-first --color=always | head -n "$n"
-}
-
 
 alias today='printf "$(date "+%Y-%m-%d")"'
 
