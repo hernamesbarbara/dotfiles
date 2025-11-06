@@ -123,8 +123,8 @@ GITIGNORE
     "**/dist/**": true,
     "**/tmp/**": true
   },
-  "search.useIgnoreFiles": true,
-  "explorer.excludeGitIgnore": true
+  "search.useIgnoreFiles": false,
+  "explorer.excludeGitIgnore": false
 }
 JSON
 )
