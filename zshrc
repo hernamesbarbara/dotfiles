@@ -77,7 +77,7 @@ export LC_MESSAGES="en_US.UTF-8"
 # FUNCTIONS
 fpath=(~/.zshfunctions ~/.zsh/completions $fpath)
 
-autoload -Uz cwd github last_cmd_status mkd o c zmv url_clean url_humanize lh lsd lsn wifi_qr_code ebookify cleanup ccat g_ignore watch_dirs setup_workspace_excludes
+autoload -Uz cwd github last_cmd_status mkd o c zmv url_clean url_humanize lh lsd lsn wifi_qr_code ebookify cleanup ccat g_ignore watch_dirs setup_workspace_excludes tree
 
 source ~/.config/zsh/set_pycache_prefix.zsh
 
@@ -148,3 +148,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+export YDATA_PROFILING_NO_ANALYTICS=True

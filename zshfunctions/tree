@@ -1,0 +1,15 @@
+#!/usr/bin/env zsh
+tree() {
+  # If the user already passed --gitignore or -I or wants raw tree, don't override
+  for arg in "$@"; do
+    case "$arg" in
+      --gitignore|-I|--nigit?*|--no-gitignore)
+        command tree "$@"
+        return
+        ;;
+    esac
+  done
+
+  # Default behavior: inject --gitignore
+  command tree --gitignore "$@"
+}
