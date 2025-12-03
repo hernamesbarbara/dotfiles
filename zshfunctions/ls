@@ -1,0 +1,114 @@
+#!/usr/bin/env zsh
+#
+# ls wrapper with sensible defaults
+#
+# Prefers GNU ls (gls) if available, falls back to system ls.
+#
+# Defaults (gls):
+#   --color=auto              colorized output
+#   --group-directories-first directories before files
+#   -F                        trailing slash for directories, * for executables
+#
+# Defaults (BSD ls fallback):
+#   -G                        colorized output
+#   -F                        trailing indicators
+#   (--group-directories-first not available)
+#
+# Override flags (these are stripped before calling ls):
+#   --raw           bypass wrapper entirely, call ls directly
+#   --no-color      don't auto-add color flags
+#   --no-classify   don't auto-add -F (no trailing indicators)
+#   --no-group-dirs don't auto-add --group-directories-first
+#   --no-defaults   disable all auto-added flags
+#
+ls() {
+  local -a args=()
+  local raw=0 no_color=0 no_classify=0 no_group_dirs=0
+  local has_color=0 has_classify=0 has_group_dirs=0
+
+  # Detect which ls to use (cache result for session)
+  if [[ -z "$_LS_CMD" ]]; then
+    if (( $+commands[gls] )); then
+      _LS_CMD=gls
+    else
+      _LS_CMD=ls
+      # Warn once per session
+      if [[ -z "$_LS_FALLBACK_WARNED" ]]; then
+        print -u2 "ls: gls not found, using system ls (brew install coreutils for full features)"
+        _LS_FALLBACK_WARNED=1
+      fi
+    fi
+  fi
+
+  # Parse arguments
+  for arg in "$@"; do
+    case "$arg" in
+      --raw)
+        raw=1
+        ;;
+      --no-color)
+        no_color=1
+        ;;
+      --no-classify)
+        no_classify=1
+        ;;
+      --no-group-dirs)
+        no_group_dirs=1
+        ;;
+      --no-defaults)
+        no_color=1
+        no_classify=1
+        no_group_dirs=1
+        ;;
+      --color|--color=*)
+        has_color=1
+        args+=("$arg")
+        ;;
+      -F|--classify)
+        has_classify=1
+        args+=("$arg")
+        ;;
+      --group-directories-first)
+        has_group_dirs=1
+        # Only pass to gls; BSD ls doesn't support this flag
+        [[ "$_LS_CMD" == "gls" ]] && args+=("$arg")
+        ;;
+      -*)
+        # Short flags: detect bundled -F; -G only means color on BSD ls
+        [[ "$_LS_CMD" != "gls" && "$arg" == *G* ]] && has_color=1
+        [[ "$arg" == *F* ]] && has_classify=1
+        args+=("$arg")
+        ;;
+      *)
+        args+=("$arg")
+        ;;
+    esac
+  done
+
+  # Full escape hatch
+  if (( raw )); then
+    command $_LS_CMD "$@"
+    return
+  fi
+
+  # Assemble final command
+  local -a cmd=(command $_LS_CMD)
+
+  if [[ "$_LS_CMD" == "gls" ]]; then
+    # GNU ls flags
+    (( ! no_color && ! has_color )) && cmd+=(--color=auto)
+    (( ! no_group_dirs && ! has_group_dirs )) && cmd+=(--group-directories-first)
+  else
+    # BSD ls flags
+    (( ! no_color && ! has_color )) && cmd+=(-G)
+    # BSD ls doesn't support --group-directories-first
+  fi
+
+  # -F works on both
+  (( ! no_classify && ! has_classify )) && cmd+=(-F)
+
+  # Append remaining user args
+  cmd+=("${args[@]}")
+
+  "${cmd[@]}"
+}

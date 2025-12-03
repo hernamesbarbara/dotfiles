@@ -1,15 +1,105 @@
 #!/usr/bin/env zsh
+#
+# tree wrapper with sensible defaults
+#
+# Defaults:
+#   -F              trailing slash for directories
+#   --gitignore     respect .gitignore rules
+#   -I <pattern>    exclude .git and .DS_Store
+#
+# Override flags (these are stripped before calling tree):
+#   --raw           bypass wrapper entirely, call tree directly
+#   --no-gitignore  don't auto-add --gitignore
+#   --no-ignore     don't auto-add default -I patterns (keeps user's -I if provided)
+#   --no-defaults   equivalent to --no-gitignore --no-ignore
+#
+# User's -I patterns are merged with defaults, not replaced.
+# Example: tree -I 'foo' → tree -F --gitignore -I '.git|.DS_Store|foo'
+#
 tree() {
-  # If the user already passed --gitignore or -I or wants raw tree, don't override
-  for arg in "$@"; do
+  local -a args=()
+  local -a user_ignores=()
+  local raw=0 no_gitignore=0 no_ignore=0 has_gitignore=0
+
+  # Default ignore patterns (pipe-separated for tree's -I)
+  local default_ignore='.git|.DS_Store'
+
+  # Parse arguments
+  local i=1
+  while (( i <= $# )); do
+    local arg="${@[$i]}"
     case "$arg" in
-      --gitignore|-I|--nigit?*|--no-gitignore)
-        command tree "$@"
-        return
+      --raw)
+        raw=1
+        ;;
+      --no-gitignore)
+        no_gitignore=1
+        ;;
+      --no-ignore)
+        no_ignore=1
+        ;;
+      --no-defaults)
+        no_gitignore=1
+        no_ignore=1
+        ;;
+      --gitignore)
+        has_gitignore=1
+        args+=("$arg")
+        ;;
+      -I)
+        # -I with space-separated pattern: -I 'pattern'
+        (( i++ ))
+        [[ $i -le $# ]] && user_ignores+=("${@[$i]}")
+        ;;
+      -I*)
+        # -I with attached pattern: -I'pattern'
+        user_ignores+=("${arg#-I}")
+        ;;
+      --ignore=*)
+        # --ignore=pattern
+        user_ignores+=("${arg#--ignore=}")
+        ;;
+      *)
+        args+=("$arg")
         ;;
     esac
+    (( i++ ))
   done
 
-  # Default behavior: inject --gitignore
-  command tree --gitignore "$@"
+  # Full escape hatch
+  if (( raw )); then
+    command tree "$@"
+    return
+  fi
+
+  # Build final -I pattern by merging defaults with user patterns
+  local final_ignore=""
+  if (( ! no_ignore )); then
+    final_ignore="$default_ignore"
+  fi
+  for pat in "${user_ignores[@]}"; do
+    if [[ -n "$final_ignore" ]]; then
+      final_ignore="${final_ignore}|${pat}"
+    else
+      final_ignore="$pat"
+    fi
+  done
+
+  # Assemble final command
+  local -a cmd=(command tree -F)
+
+  # Add --gitignore unless disabled or already present
+  if (( ! no_gitignore && ! has_gitignore )); then
+    cmd+=(--gitignore)
+  fi
+
+  # Add merged ignore pattern if non-empty
+  if [[ -n "$final_ignore" ]]; then
+    cmd+=(-I "$final_ignore")
+  fi
+
+  # Append remaining user args
+  cmd+=("${args[@]}")
+
+  "${cmd[@]}"
 }
