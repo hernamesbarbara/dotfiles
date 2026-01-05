@@ -1,9 +1,21 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
-function lh() {
-    if [[ -z "$@" ]]; then
-        ls -ld .??*;
-    else
-        ls -ld "${1}/".??*;
-    fi
-};
+# List hidden entries (dotfiles) in long format.
+# Usage: lh [DIR]
+lh() {
+  local dir="${1:-.}"
+  local -a hidden=(
+    "$dir"/.[!.]*(N)   # excludes . and ..
+    "$dir"/..?*(N)
+  )
+
+  (( ${#hidden[@]} == 0 )) && return 0
+
+  if [[ "$dir" == "." ]]; then
+    # Strip leading "./" for nicer display.
+    # Keep colors intact (sed won't remove ANSI sequences here since we're only removing literal "./").
+    ls -ld "${hidden[@]}" | sed 's#^\(.\{10,\} \{1,\}[^ ]\{1,\} \{1,\}[^ ]\{1,\} \{1,\}[^ ]\{1,\} \{1,\}[^ ]\{1,\} \{1,\}[^ ]\{1,\} \{1,\}\)\./#\1#'
+  else
+    ls -ld "${hidden[@]}"
+  fi
+}

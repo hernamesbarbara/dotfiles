@@ -31,10 +31,9 @@ ls() {
     if (( $+commands[gls] )); then
       _LS_CMD=gls
     else
-      _LS_CMD=ls
-      # Warn once per session
+      _LS_CMD=/bin/ls
       if [[ -z "$_LS_FALLBACK_WARNED" ]]; then
-        print -u2 "ls: gls not found, using system ls (brew install coreutils for full features)"
+        print -u2 "ls: gls not found, using /bin/ls (brew install coreutils for full features)"
         _LS_FALLBACK_WARNED=1
       fi
     fi
@@ -87,9 +86,10 @@ ls() {
 
   # Full escape hatch
   if (( raw )); then
-    command $_LS_CMD "$@"
+    command $_LS_CMD "${args[@]}"
     return
   fi
+
 
   # Assemble final command
   local -a cmd=(command $_LS_CMD)

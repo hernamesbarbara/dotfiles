@@ -10,7 +10,7 @@
 # Override flags (these are stripped before calling tree):
 #   --raw           bypass wrapper entirely, call tree directly
 #   --no-gitignore  don't auto-add --gitignore
-#   --no-ignore     don't auto-add default -I patterns (keeps user's -I if provided)
+#   --no-ignore     don't auto-add default ignore patterns (keeps user's -I if provided)
 #   --no-defaults   equivalent to --no-gitignore --no-ignore
 #
 # User's -I patterns are merged with defaults, not replaced.
@@ -24,7 +24,6 @@ tree() {
   # Default ignore patterns (pipe-separated for tree's -I)
   local default_ignore='.git|.DS_Store'
 
-  # Parse arguments
   local i=1
   while (( i <= $# )); do
     local arg="${@[$i]}"
@@ -46,17 +45,24 @@ tree() {
         has_gitignore=1
         args+=("$arg")
         ;;
+      --)
+        # Stop option parsing; pass through the rest verbatim
+        (( i++ ))
+        while (( i <= $# )); do
+          args+=("${@[$i]}")
+          (( i++ ))
+        done
+        break
+        ;;
       -I)
-        # -I with space-separated pattern: -I 'pattern'
         (( i++ ))
         [[ $i -le $# ]] && user_ignores+=("${@[$i]}")
         ;;
       -I*)
-        # -I with attached pattern: -I'pattern'
         user_ignores+=("${arg#-I}")
         ;;
       --ignore=*)
-        # --ignore=pattern
+        # Wrapper convenience: treat like -I
         user_ignores+=("${arg#--ignore=}")
         ;;
       *)
@@ -66,17 +72,19 @@ tree() {
     (( i++ ))
   done
 
-  # Full escape hatch
+  # Full escape hatch (strip wrapper-only flags)
   if (( raw )); then
-    command tree "$@"
+    command tree "${args[@]}"
     return
   fi
 
-  # Build final -I pattern by merging defaults with user patterns
+  # Merge ignore patterns:
+  # - If --no-ignore: don't add defaults, but keep user patterns.
   local final_ignore=""
   if (( ! no_ignore )); then
     final_ignore="$default_ignore"
   fi
+
   for pat in "${user_ignores[@]}"; do
     if [[ -n "$final_ignore" ]]; then
       final_ignore="${final_ignore}|${pat}"
@@ -85,21 +93,16 @@ tree() {
     fi
   done
 
-  # Assemble final command
   local -a cmd=(command tree -F)
 
-  # Add --gitignore unless disabled or already present
   if (( ! no_gitignore && ! has_gitignore )); then
     cmd+=(--gitignore)
   fi
 
-  # Add merged ignore pattern if non-empty
   if [[ -n "$final_ignore" ]]; then
     cmd+=(-I "$final_ignore")
   fi
 
-  # Append remaining user args
   cmd+=("${args[@]}")
-
   "${cmd[@]}"
 }

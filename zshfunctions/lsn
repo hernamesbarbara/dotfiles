@@ -1,14 +1,20 @@
 # Top N recent entries (keep color in the pipe)
 lsn() {
   # Usage: lsn [N] [DIR]; default N=10, DIR=current directory
-  local n dir
+  local n dir lines
   n="${1:-10}"
+  dir="${2:-.}"
+  lines=$(( n + 1 ))
 
-  if [[ -n "$2" ]]; then
-    dir="$2"
+  # Use wrapper ls so it works with gls or /bin/ls.
+  # Force color through the pipe.
+  if (( $+commands[gls] )); then
+    ls -lht --group-directories-first --color=always "$dir" \
+      | head -n "$lines" \
+      | sed '1{/^total /d;}'
   else
-    dir="."
+    ls -lht -G "$dir" \
+      | head -n "$lines" \
+      | sed '1{/^total /d;}'
   fi
-
-  gls -lht --group-directories-first --color=always "$dir" | head -n "$n"
 }

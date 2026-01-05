@@ -73,36 +73,6 @@ function sn() { screen -S "$@"; }
 # untar / archive data formats
 alias untar='tar xvf'
 
-# dircolors is only relevant if you are using
-if is_valid_command dircolors; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# Detect which `ls` flavor is in use
-if is_valid_command ls -F --color --quote-name; then
-    # GNU `ls`
-    # -F            => append indicator (e.g. * for executables and / for directories)
-    # --quote-name  => surround folder names in quotes
-    # -N            => print raw entry names
-    colorflag="-FN --color"
-else
-    # OS X `ls`
-    # -G use colors
-    # -p add trailing slash to directories
-    # -F append * for executables
-    colorflag="-GFp"
-fi
-
-
-
-# List all files colorized in long format, including dot files
-# alias la="ls -lha --block-size=MB"
-
-
 function followers() {
     SCREEN_NAME=`t whoami | grep Name | cut -d',' -f1 | cut -d'e' -f2`
     SCREEN_NAME=`echo "$SCREEN_NAME" | xargs`
