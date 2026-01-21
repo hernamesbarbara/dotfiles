@@ -5,6 +5,7 @@
 # 1) FAST EARLY ENV (keep this lean)
 ####################################
 
+export DOTFILES_PATH="$HOME/code/github/austinogilvie/dotfiles"
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='code --wait'
 export TERM="xterm-256color"
@@ -122,6 +123,8 @@ fi
 export PATH="$HOME/Library/Python/3.11/bin:$PATH"
 export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
+export JUPYTER_PATH="/opt/homebrew/share/jupyter:${JUPYTER_PATH:-}"
+
 
 if [[ -n "$_BREW_PREFIX" ]]; then
   export PATH="${_BREW_PREFIX}/opt/ruby/bin:$PATH"
@@ -168,3 +171,4 @@ fi
 if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+export PATH="$PATH:$(go env GOPATH)/bin"
