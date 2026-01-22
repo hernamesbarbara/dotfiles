@@ -1,0 +1,6 @@
+# copy_and_clear_line - ZLE widget: copy current command line to macOS clipboard, then clear it
+
+copy_and_clear_line() {
+  echo -n "$BUFFER" | pbcopy
+  zle kill-whole-line
+}

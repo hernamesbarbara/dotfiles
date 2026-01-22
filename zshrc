@@ -55,7 +55,7 @@ autoload -Uz \
   lh lsd lsn \
   wifi_qr_code ebookify cleanup ccat g_ignore \
   watch_dirs setup_workspace_excludes tree \
-  ls
+  ls copy_and_clear_line
 
 # Your aliases (keep after OMZ so they override common-aliases/etc.)
 [ -f "$HOME/.aliases.zsh" ] && source "$HOME/.aliases.zsh"
@@ -79,6 +79,8 @@ fi
 ####################################
 
 # Keybindings
+zle -N copy_and_clear_line
+bindkey "^X^Y" copy_and_clear_line
 bindkey "^U" backward-kill-line
 bindkey "^T" transpose-words
 bindkey "^R" history-incremental-search-backward
@@ -172,3 +174,4 @@ if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 export PATH="$PATH:$(go env GOPATH)/bin"
+export WRANGLER_SKIP_HOOKS=1
