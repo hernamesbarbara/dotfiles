@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+
+remove_spaces() {
+    local dry_run=false
+
+    if [[ "$1" == "--dry-run" ]]; then
+        dry_run=true
+        shift
+    fi
+
+    if [[ "$#" -eq 0 ]]; then
+        cat <<'HELP'
+Remove spaces from filenames.
+
+Usage:
+  remove_spaces [--dry-run] <files...>
+
+Examples:
+  remove_spaces *.png
+  remove_spaces frontend/pencil-dev/pencil-exports/*
+  remove_spaces --dry-run *.png
+HELP
+        return 1
+    fi
+
+    local f new
+    for f in "$@"; do
+        [[ "$f" == *" "* ]] || continue
+        new="${f// /}"
+
+        if $dry_run; then
+            echo mv "$f" "$new"
+        else
+            mv -- "$f" "$new"
+        fi
+    done
+}

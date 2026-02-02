@@ -55,7 +55,7 @@ autoload -Uz \
   lh lsd lsn \
   wifi_qr_code ebookify cleanup ccat g_ignore \
   watch_dirs setup_workspace_excludes tree \
-  ls copy_and_clear_line
+  ls copy_and_clear_line remove_spaces
 
 # Your aliases (keep after OMZ so they override common-aliases/etc.)
 [ -f "$HOME/.aliases.zsh" ] && source "$HOME/.aliases.zsh"

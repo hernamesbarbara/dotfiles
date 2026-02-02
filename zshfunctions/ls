@@ -22,6 +22,13 @@
 #   --no-defaults   disable all auto-added flags
 #
 ls() {
+  # Non-interactive shells (e.g., Claude Code / automated runners) should get plain system ls
+  # so we don't print warnings, depend on gls, or add extra flags that pollute logs.
+  if [[ ! -o interactive ]]; then
+    command /bin/ls "$@"
+    return
+  fi
+
   local -a args=()
   local raw=0 no_color=0 no_classify=0 no_group_dirs=0
   local has_color=0 has_classify=0 has_group_dirs=0
@@ -89,7 +96,6 @@ ls() {
     command $_LS_CMD "${args[@]}"
     return
   fi
-
 
   # Assemble final command
   local -a cmd=(command $_LS_CMD)
